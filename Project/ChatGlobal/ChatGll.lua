@@ -13,10 +13,6 @@ local Window = WindUI:CreateWindow({
             print("Follow My Tiktok Khafidz_3 Plsss")
         end,
     },
-    Thumbnail = {
-        Image = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/330px-FullMoon2010.jpg",
-        Title = "Thumbnail"
-    },
 })
 
 local Main = Window:Tab({
@@ -24,3 +20,5 @@ local Main = Window:Tab({
     Icon = "wifi-cog",
     Locked = false,
 })
+
+Tab:Select() -- Select Tab
