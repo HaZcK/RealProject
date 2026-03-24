@@ -1,4 +1,4 @@
-local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/refs/heads/main/main.lua"))()
+local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/download/latest/main.lua"))()
 
 local Window = WindUI:CreateWindow({
     Title = "ChatUi",
@@ -6,6 +6,7 @@ local Window = WindUI:CreateWindow({
     Author = "by Khafidz_3",
     Folder = "ChatUiFolder",
     Background = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/330px-FullMoon2010.jpg",
+        
     User = {
         Enabled = true,
         Anonymous = true,
