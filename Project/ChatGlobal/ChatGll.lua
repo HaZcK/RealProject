@@ -5,11 +5,10 @@ local Window = WindUI:CreateWindow({
     Icon = "wifi",
     Author = "by Khafidz_3",
     Folder = "ChatUiFolder",
-    Background = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/330px-FullMoon2010.jpg",
         
     User = {
         Enabled = true,
-        Anonymous = true,
+        Anonymous = false,
         Callback = function()
             print("Follow My Tiktok Khafidz_3 Plsss")
         end,
@@ -19,7 +18,7 @@ local Window = WindUI:CreateWindow({
 local Main = Window:Tab({
     Title = "Main",
     Icon = "wifi-cog",
-    Locked = false,
+    Locked = false
 })
 
 Tab:Select() -- Select Tab
