@@ -1071,68 +1071,284 @@ local Window = Rayfield:CreateWindow({
 
 local Tab = Window:CreateTab("⚙  Pengaturan", "settings")
 
-Tab:CreateSection("👤  Identitas")
+-- ══════════════════════════════════════
+-- PHASE 1: RAYFIELD SETUP
+-- ══════════════════════════════════════
+for _, g in ipairs(PGui:GetChildren()) do
+    if g.Name=="ChatGlobalUI" or g.Name=="AgeVerifyUI" then g:Destroy() end
+end
+
+local rfOk, Rayfield = pcall(function()
+    return loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
+end)
+if not rfOk or not Rayfield then
+    error("❌ Gagal load Rayfield. Cek koneksi internet!")
+end
+
+-- Helper: Rayfield kadang pass table kadang string
+local function rv(v)
+    if type(v) == "table" then return tostring(v[1] or "") end
+    return tostring(v or "")
+end
+
+-- ══════════════════════════════════════
+-- LANGUAGE STRINGS (GUI Multilang)
+-- ══════════════════════════════════════
+local LANG_STRINGS = {
+    ID = {
+        title       = "ChatGlobal  ·  Setup",
+        tabName     = "⚙  Pengaturan",
+        secIdent    = "👤  Identitas",
+        secRegion   = "🌍  Region & Bahasa  ←  WAJIB DIISI",
+        secPrivacy  = "🔒  Privasi & Filter",
+        secTheme    = "🎨  Tema Chat",
+        secStart    = "🚀  Mulai Chat",
+        lblWarn     = "⚠  Pilih Bahasa dan Region sebelum Load!",
+        btnLoad     = "▶   Load Chat",
+        btnDefault  = "★   Set Default & Load",
+        notifTitle  = "⚠  Belum Dikustomisasi!",
+        notifMsg    = "Pilih Bahasa dan Region terlebih dahulu sebelum memuat chat.",
+    },
+    EN = {
+        title       = "ChatGlobal  ·  Setup",
+        tabName     = "⚙  Settings",
+        secIdent    = "👤  Identity",
+        secRegion   = "🌍  Region & Language  ←  REQUIRED",
+        secPrivacy  = "🔒  Privacy & Filter",
+        secTheme    = "🎨  Chat Theme",
+        secStart    = "🚀  Start Chat",
+        lblWarn     = "⚠  Select Language and Region before Load!",
+        btnLoad     = "▶   Load Chat",
+        btnDefault  = "★   Set Default & Load",
+        notifTitle  = "⚠  Not Customized!",
+        notifMsg    = "Please select Language and Region before loading chat.",
+    },
+    RU = {
+        title       = "ChatGlobal  ·  Настройка",
+        tabName     = "⚙  Настройки",
+        secIdent    = "👤  Личность",
+        secRegion   = "🌍  Регион & Язык  ←  ОБЯЗАТЕЛЬНО",
+        secPrivacy  = "🔒  Конфиденциальность",
+        secTheme    = "🎨  Тема чата",
+        secStart    = "🚀  Начать чат",
+        lblWarn     = "⚠  Выбери язык и регион перед загрузкой!",
+        btnLoad     = "▶   Загрузить чат",
+        btnDefault  = "★   По умолчанию & Загрузить",
+        notifTitle  = "⚠  Не настроено!",
+        notifMsg    = "Выбери язык и регион перед загрузкой чата.",
+    },
+    TH = {
+        title       = "ChatGlobal  ·  ตั้งค่า",
+        tabName     = "⚙  การตั้งค่า",
+        secIdent    = "👤  ตัวตน",
+        secRegion   = "🌍  ภูมิภาค & ภาษา  ←  จำเป็น",
+        secPrivacy  = "🔒  ความเป็นส่วนตัว",
+        secTheme    = "🎨  ธีมแชท",
+        secStart    = "🚀  เริ่มแชท",
+        lblWarn     = "⚠  เลือกภาษาและภูมิภาคก่อนโหลด!",
+        btnLoad     = "▶   โหลดแชท",
+        btnDefault  = "★   ค่าเริ่มต้น & โหลด",
+        notifTitle  = "⚠  ยังไม่ได้ตั้งค่า!",
+        notifMsg    = "กรุณาเลือกภาษาและภูมิภาคก่อนโหลดแชท",
+    },
+    KZ = {
+        title       = "ChatGlobal  ·  Баптау",
+        tabName     = "⚙  Баптаулар",
+        secIdent    = "👤  Жеке басы",
+        secRegion   = "🌍  Аймақ & Тіл  ←  МІНДЕТТІ",
+        secPrivacy  = "🔒  Құпиялылық",
+        secTheme    = "🎨  Чат тақырыбы",
+        secStart    = "🚀  Чатты бастау",
+        lblWarn     = "⚠  Жүктемес бұрын тіл мен аймақты таңдаңыз!",
+        btnLoad     = "▶   Чатты жүктеу",
+        btnDefault  = "★   Әдепкі & Жүктеу",
+        notifTitle  = "⚠  Реттелмеген!",
+        notifMsg    = "Чатты жүктемес бұрын тіл мен аймақты таңдаңыз.",
+    },
+    JP = {
+        title       = "ChatGlobal  ·  設定",
+        tabName     = "⚙  設定",
+        secIdent    = "👤  アイデンティティ",
+        secRegion   = "🌍  地域 & 言語  ←  必須",
+        secPrivacy  = "🔒  プライバシー",
+        secTheme    = "🎨  チャートテーマ",
+        secStart    = "🚀  チャット開始",
+        lblWarn     = "⚠  ロード前に言語と地域を選択してください！",
+        btnLoad     = "▶   チャット読み込み",
+        btnDefault  = "★   デフォルト & 読み込み",
+        notifTitle  = "⚠  カスタマイズされていません！",
+        notifMsg    = "チャットを読み込む前に言語と地域を選択してください。",
+    },
+    AR = {
+        title       = "ChatGlobal  ·  الإعداد",
+        tabName     = "⚙  الإعدادات",
+        secIdent    = "👤  الهوية",
+        secRegion   = "🌍  المنطقة واللغة  ←  مطلوب",
+        secPrivacy  = "🔒  الخصوصية",
+        secTheme    = "🎨  سمة الدردشة",
+        secStart    = "🚀  ابدأ الدردشة",
+        lblWarn     = "⚠  اختر اللغة والمنطقة قبل التحميل!",
+        btnLoad     = "▶   تحميل الدردشة",
+        btnDefault  = "★   افتراضي & تحميل",
+        notifTitle  = "⚠  لم يتم التخصيص!",
+        notifMsg    = "الرجاء اختيار اللغة والمنطقة قبل تحميل الدردشة.",
+    },
+}
+-- Fallback ke EN kalau tidak ada
+setmetatable(LANG_STRINGS, {__index = function() return LANG_STRINGS.EN end})
+
+-- GUI Language default = ID
+local guiLang = "ID"
+local function S(key)
+    return (LANG_STRINGS[guiLang] or LANG_STRINGS.EN)[key] or key
+end
+
+-- Map kode bahasa chat ke kode GUI lang
+local LANG_CODE_MAP = {
+    ["ALL  -  Semua Bahasa / All Languages"] = "ALL",
+    ["ID  -  Indonesia"]    = "ID",
+    ["EN  -  English"]      = "EN",
+    ["RU  -  Русский"]      = "RU",
+    ["TH  -  ภาษาไทย"]    = "TH",
+    ["KZ  -  Қазақша"]     = "KZ",
+    ["JP  -  日本語"]       = "JP",
+    ["AR  -  العربية"]     = "AR",
+    ["ES  -  Español"]      = "ES",
+    ["FR  -  Français"]     = "FR",
+    ["PT  -  Português"]    = "PT",
+    ["DE  -  Deutsch"]      = "DE",
+    ["KR  -  한국어"]       = "KR",
+    ["CN  -  中文"]         = "CN",
+    ["TR  -  Türkçe"]      = "TR",
+}
+
+local REGION_CODE_MAP = {
+    ["🌍  Global  -  Semua Dunia / Worldwide"] = "GLOBAL",
+    ["🇮🇩  ID  -  Indonesia Only"]             = "ID",
+    ["🇷🇺  RU  -  Russia Only"]                = "RU",
+    ["🇹🇭  TH  -  Thailand Only"]              = "TH",
+    ["🇰🇿  KZ  -  Kazakhstan Only"]            = "KZ",
+    ["🇯🇵  JP  -  Japan Only"]                 = "JP",
+    ["🇸🇦  AR  -  Arab Region Only"]           = "AR",
+    ["🇺🇸  EN  -  English Speaking"]           = "EN",
+}
+
+local Window = Rayfield:CreateWindow({
+    Name            = S("title"),
+    LoadingTitle    = "ChatGlobal v3.0",
+    LoadingSubtitle = "by KHAFIDZKTP",
+    ConfigurationSaving = {Enabled=false},
+    Discord         = {Enabled=false},
+    KeySystem       = false,
+})
+
+local Tab = Window:CreateTab(S("tabName"), "settings")
+
+-- GUI LANGUAGE SELECTOR (paling atas)
+Tab:CreateSection("🗣  Bahasa GUI  /  GUI Language")
+Tab:CreateDropdown({
+    Name          = "Bahasa Tampilan GUI",
+    Options       = {"ID  -  Indonesia","EN  -  English","RU  -  Русский","TH  -  ภาษาไทย","KZ  -  Қазақша","JP  -  日本語","AR  -  العربية"},
+    CurrentOption = {"ID  -  Indonesia"},
+    Flag          = "GuiLang",
+    Callback      = function(v)
+        local sel = rv(v)
+        local code = sel:match("^(%a+)") or "ID"
+        guiLang = code
+        -- Note: Rayfield tidak bisa re-render live, tapi config tersimpan
+        -- untuk notifikasi dan label selanjutnya
+    end,
+})
+
+Tab:CreateSection(S("secIdent"))
 Tab:CreateInput({
     Name                   = "Display Name",
     PlaceholderText        = LP.Name,
     RemoveTextAfterFocusLost = false,
-    Callback               = function(v) if v~="" then Config.DisplayName=v end end,
+    Callback               = function(v)
+        local val = rv(v)
+        if val ~= "" then Config.DisplayName = val end
+    end,
 })
 
-Tab:CreateSection("🌍  Region & Bahasa  ←  WAJIB DIISI")
+Tab:CreateSection(S("secRegion"))
 Tab:CreateDropdown({
     Name          = "Bahasa Chat",
-    Options       = {"ALL  -  Semua Bahasa","ID  -  Indonesia","EN  -  English"},
-    CurrentOption = {"ALL  -  Semua Bahasa"},
+    Options       = {
+        "ALL  -  Semua Bahasa / All Languages",
+        "ID  -  Indonesia",
+        "EN  -  English",
+        "RU  -  Русский",
+        "TH  -  ภาษาไทย",
+        "KZ  -  Қазақша",
+        "JP  -  日本語",
+        "AR  -  العربية",
+        "ES  -  Español",
+        "FR  -  Français",
+        "PT  -  Português",
+        "DE  -  Deutsch",
+        "KR  -  한국어",
+        "CN  -  中文",
+        "TR  -  Türkçe",
+    },
+    CurrentOption = {"ALL  -  Semua Bahasa / All Languages"},
     Flag          = "Lang",
     Callback      = function(v)
-        Config.Lang = v:find("ID") and not v:find("GLOBAL") and "ID" or v:find("EN") and "EN" or "ALL"
-        if Config.Lang and Config.Region then hasCustomized=true end
-    end,
-})
-Tab:CreateDropdown({
-    Name          = "Region",
-    Options       = {"🌍  Global  -  Semua Dunia","🇮🇩  ID  -  Indonesia Only"},
-    CurrentOption = {"🌍  Global  -  Semua Dunia"},
-    Flag          = "Region",
-    Callback      = function(v)
-        Config.Region = v:find("Indonesia") and "ID" or "GLOBAL"
-        if Config.Lang and Config.Region then hasCustomized=true end
+        local sel = rv(v)
+        Config.Lang = LANG_CODE_MAP[sel] or sel:match("^(%a+)") or "ALL"
+        hasCustomized = true
+        print("✅ Bahasa dipilih: " .. Config.Lang)
     end,
 })
 
-Tab:CreateSection("🔒  Privasi & Filter")
+Tab:CreateDropdown({
+    Name          = "Region",
+    Options       = {
+        "🌍  Global  -  Semua Dunia / Worldwide",
+        "🇮🇩  ID  -  Indonesia Only",
+        "🇷🇺  RU  -  Russia Only",
+        "🇹🇭  TH  -  Thailand Only",
+        "🇰🇿  KZ  -  Kazakhstan Only",
+        "🇯🇵  JP  -  Japan Only",
+        "🇸🇦  AR  -  Arab Region Only",
+        "🇺🇸  EN  -  English Speaking",
+    },
+    CurrentOption = {"🌍  Global  -  Semua Dunia / Worldwide"},
+    Flag          = "Region",
+    Callback      = function(v)
+        local sel = rv(v)
+        Config.Region = REGION_CODE_MAP[sel] or "GLOBAL"
+        print("✅ Region dipilih: " .. Config.Region)
+    end,
+})
+
+Tab:CreateSection(S("secPrivacy"))
 Tab:CreateToggle({Name="Sensor Kata Kasar",       CurrentValue=false, Flag="Sensor",     Callback=function(v) Config.Sensor=v end})
 Tab:CreateToggle({Name="🔗  Sensor Link (semua)", CurrentValue=false, Flag="SensorLink", Callback=function(v) Config.SensorLink=v end})
 Tab:CreateToggle({Name="👥  Khusus Teman",         CurrentValue=false, Flag="Friends",   Callback=function(v) Config.FriendsOnly=v end})
 Tab:CreateToggle({Name="🎮  Khusus Game Ini",      CurrentValue=false, Flag="GameOnly",  Callback=function(v) Config.GameOnly=v end})
 
-Tab:CreateSection("🎨  Tema Chat")
+Tab:CreateSection(S("secTheme"))
 Tab:CreateDropdown({
-    Name="Tema", Options={"Default","Ocean","Candy","Aqua"}, CurrentOption={"Default"}, Flag="Theme",
-    Callback=function(v) Config.Theme=v end,
+    Name="Tema / Theme", Options={"Default","Ocean","Candy","Aqua"}, CurrentOption={"Default"}, Flag="Theme",
+    Callback=function(v) Config.Theme = rv(v) end,
 })
 
-Tab:CreateSection("🚀  Mulai Chat")
-Tab:CreateLabel("⚠  Pilih Bahasa dan Region sebelum Load!")
+Tab:CreateSection(S("secStart"))
+Tab:CreateLabel(S("lblWarn"))
 
 local function tryLoad()
-    if not hasCustomized or not Config.Lang or not Config.Region then
-        Rayfield:Notify({
-            Title    = "⚠  Belum Dikustomisasi!",
-            Content  = "Pilih Bahasa dan Region terlebih dahulu sebelum memuat chat.",
-            Duration = 5,
-            Image    = 4483362458,
-        })
-        return
-    end
+    -- Default: kalau belum dipilih sama sekali, pakai ALL + GLOBAL
+    if Config.Lang == nil  then Config.Lang   = "ALL"    end
+    if Config.Region == nil then Config.Region = "GLOBAL" end
+
     showAgeVerify(function()
         Window:Destroy()
         launchChatGUI()
     end)
 end
 
-Tab:CreateButton({Name="▶   Load Chat",         Callback=tryLoad})
-Tab:CreateButton({Name="★   Set Default & Load", Callback=tryLoad})
+Tab:CreateButton({Name=S("btnLoad"),    Callback=tryLoad})
+Tab:CreateButton({Name=S("btnDefault"), Callback=tryLoad})
 
 print("✅ ChatGlobal v3.0 by KHAFIDZKTP - Setup ready!")
