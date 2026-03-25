@@ -55,7 +55,7 @@ local PGui  = LP:WaitForChild("PlayerGui")
 -- CONFIG (ubah sesuai kebutuhan)
 -- ══════════════════════════════════════
 local CFG = {
-    URL      = "https://YOUR-GLITCH-APP.glitch.me", -- ← ganti ini
+    URL      = "chatglobal-server-production.up.railway.app", -- ← ganti ini
     Lang     = "ALL",    -- ALL / ID / EN
     Sensor   = false,    -- false = no sensor
     Delay    = 3,        -- detik antar poll
