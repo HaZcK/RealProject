@@ -1060,6 +1060,13 @@ if not rfOk or not Rayfield then
     error("❌ Gagal load Rayfield. Cek koneksi internet!")
 end
 
+
+-- Helper: Rayfield pass value sebagai table atau string
+local function rv(v)
+    if type(v) == "table" then return tostring(v[1] or "") end
+    return tostring(v or "")
+end
+
 local Window = Rayfield:CreateWindow({
     Name            = "ChatGlobal  ·  Setup",
     LoadingTitle    = "ChatGlobal v3.0",
@@ -1071,25 +1078,6 @@ local Window = Rayfield:CreateWindow({
 
 local Tab = Window:CreateTab("⚙  Pengaturan", "settings")
 
--- ══════════════════════════════════════
--- PHASE 1: RAYFIELD SETUP
--- ══════════════════════════════════════
-for _, g in ipairs(PGui:GetChildren()) do
-    if g.Name=="ChatGlobalUI" or g.Name=="AgeVerifyUI" then g:Destroy() end
-end
-
-local rfOk, Rayfield = pcall(function()
-    return loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
-end)
-if not rfOk or not Rayfield then
-    error("❌ Gagal load Rayfield. Cek koneksi internet!")
-end
-
--- Helper: Rayfield kadang pass table kadang string
-local function rv(v)
-    if type(v) == "table" then return tostring(v[1] or "") end
-    return tostring(v or "")
-end
 
 -- ══════════════════════════════════════
 -- LANGUAGE STRINGS (GUI Multilang)
@@ -1245,9 +1233,9 @@ local Window = Rayfield:CreateWindow({
 local Tab = Window:CreateTab(S("tabName"), "settings")
 
 -- GUI LANGUAGE SELECTOR (paling atas)
-Tab:CreateSection("🗣  Bahasa GUI  /  GUI Language")
+Tab:CreateSection("🗣  Bahasa Chat GUI  (berlaku setelah Load)")
 Tab:CreateDropdown({
-    Name          = "Bahasa Tampilan GUI",
+    Name          = "Bahasa Chat GUI",
     Options       = {"ID  -  Indonesia","EN  -  English","RU  -  Русский","TH  -  ภาษาไทย","KZ  -  Қазақша","JP  -  日本語","AR  -  العربية"},
     CurrentOption = {"ID  -  Indonesia"},
     Flag          = "GuiLang",
@@ -1343,7 +1331,9 @@ local function tryLoad()
     if Config.Region == nil then Config.Region = "GLOBAL" end
 
     showAgeVerify(function()
-        Window:Destroy()
+        -- Sembunyikan Rayfield GUI
+        local rfGui = PGui:FindFirstChild("Rayfield")
+        if rfGui then rfGui:Destroy() end
         launchChatGUI()
     end)
 end
