@@ -3,113 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sistem Terkunci Total</title>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>SISTEM TERKUNCI</title>
+    
     <style>
-        body, html {
-            margin: 0; padding: 0; width: 100%; height: 100%;
-            overflow: hidden; background-color: #000;
-            font-family: 'Arial', sans-serif; color: white;
+        body, html { 
+            margin: 0; padding: 0; width: 100%; height: 100%; 
+            background: #000; color: #00ff00; font-family: monospace;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
-
-        /* Overlay Awal agar Browser mengizinkan trap */
-        #overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); z-index: 9999;
-            display: flex; align-items: center; justify-content: center;
-            flex-direction: column; text-align: center;
+        .box {
+            border: 2px solid #00ff00; padding: 30px; text-align: center; border-radius: 10px;
+            background: rgba(0, 50, 0, 0.2); width: 80%;
         }
-
-        .lock-box {
-            display: flex; flex-direction: column; align-items: center;
-            justify-content: center; height: 100vh; padding: 20px;
-        }
-
-        .clue-box {
-            background: #222; border: 2px solid #ff4757;
-            padding: 20px; border-radius: 15px; margin-bottom: 20px;
-        }
-
         input {
-            padding: 15px; font-size: 20px; width: 250px;
-            border-radius: 10px; border: none; text-align: center;
-            margin-bottom: 15px;
+            background: #000; border: 1px solid #00ff00; color: #00ff00;
+            padding: 10px; font-size: 20px; width: 100%; text-align: center; margin: 15px 0;
         }
-
         button {
-            padding: 15px 40px; font-size: 18px; font-weight: bold;
-            background: #ff4757; color: white; border: none;
-            border-radius: 10px; cursor: pointer;
+            background: #00ff00; color: #000; border: none; font-weight: bold;
+            padding: 10px 20px; cursor: pointer; width: 100%;
         }
-
-        .warning { color: yellow; font-size: 12px; margin-top: 10px; }
     </style>
 </head>
 <body>
 
-    <div id="overlay">
-        <h1>⚠️ WOI AYO CLICK INI GUYS⚠️</h1>
-        <p>click aja yang button di bawah ini.</p>
-        <button onclick="startTrap()">MASUK MODE FAST</button>
-    </div>
-
-    <div class="lock-box">
-        <div class="clue-box">
-            <h3>PERTANYAAN KEAMANAN:</h3>
-            <p style="font-size: 1.2em; color: #eccc68;">"13 ÷ 2 = ???"</p>
-            <p>CEPAT MASA KAMU TIDAK BISA KAMU UDAH GEDE!</p>
-        </div>
-
-        <input type="number" id="jawaban" placeholder="Ketik angka..." step="0.1">
-        <button onclick="verifikasi()">BUKA KUNCI</button>
-        
-        <p class="warning">Tombol navigasi HP kamu telah dinonaktifkan sistem.</p>
+    <div class="box">
+        <h2>CORE SYSTEM LOCKED</h2>
+        <p>Selesaikan persamaan untuk akses keluar:</p>
+        <p style="font-size: 20px; color: yellow;">13 ÷ 2 = ???</p>
+        <input type="number" id="pass" step="0.1" placeholder="RESULT">
+        <button onclick="unlock()">ACCESS EXIT</button>
     </div>
 
     <script>
-        // Fungsi untuk mengunci history secara agresif
-        function lockHistory() {
-            window.history.pushState(null, "", window.location.href);
-            window.onpopstate = function() {
-                // Setiap kali user tekan back, kita paksa balik lagi
-                window.history.pushState(null, "", window.location.href);
-                alert("Sistem Terkunci! Masukkan jawaban untuk keluar.");
-            };
+        // TRAP 1: Mencegah tombol back dengan looping history
+        function push() {
+            window.history.pushState(null, null, window.location.href);
         }
+        push();
+        window.onpopstate = function() {
+            push();
+            alert("SISTEM TERKUNCI! MASUKKAN KODE!");
+        };
 
-        // Fungsi mulai (dipicu klik pertama)
-        function startTrap() {
-            document.getElementById('overlay').style.display = 'none';
-            
-            // Masuk Fullscreen
-            let elem = document.documentElement;
-            if (elem.requestFullscreen) elem.requestFullscreen();
-            else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
+        // TRAP 2: Fullscreen paksa setiap kali layar disentuh
+        document.addEventListener('click', function() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(e => {});
+            }
+        });
 
-            // Jalankan trap history
-            lockHistory();
-            
-            // Re-lock setiap 1 detik untuk memastikan history tetap penuh
-            setInterval(function() {
-                window.history.pushState(null, "", window.location.href);
-            }, 1000);
-        }
-
-        function verifikasi() {
-            const input = document.getElementById('jawaban').value;
-            
-            // Jawaban matematika: 6.5
-            if (input === "6.5") {
-                alert("Jawaban Benar! Akses diberikan.");
-                window.onpopstate = null; // Matikan trap
+        // LOGIKA PASSWORD
+        function unlock() {
+            const val = document.getElementById('pass').value;
+            // Jawaban 6.5
+            if (val === "6.5") {
+                alert("ACCESS GRANTED. GOODBYE.");
+                window.onpopstate = null;
                 window.location.replace("https://www.google.com");
             } else {
-                alert("SALAH! Belajar matematika lagi sana!");
+                alert("SALAH! CEPAT JAWAB, MASA GAK BISA? UDAH GEDE!");
             }
         }
 
-        // Mencegah klik kanan dan beberapa shortcut keyboard
-        document.addEventListener('contextmenu', event => event.preventDefault());
+        // TRAP 3: Mencegah refresh/tutup tab
+        window.onbeforeunload = function() {
+            return "Kamu tidak bisa keluar begitu saja!";
+        };
     </script>
 </body>
 </html>
-
