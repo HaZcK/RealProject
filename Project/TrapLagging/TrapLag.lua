@@ -1,69 +1,63 @@
 -- ╔══════════════════════════════════════╗
 -- ║         TrapLag v2.1                 ║
--- ║     Anti-Lag & Config Script         ║
--- ║           UI: WindUI                 ║
+-- ║   Anti-Lag & Config Script           ║
+-- ║         UI: WindUI                   ║
 -- ╚══════════════════════════════════════╝
 
-local TRAPLAG_VERSION = "2.1" -- Ganti ini setiap update format config
+local VERSION = "TL21"
 
 -- ========================
--- BASE64 ENCODE / DECODE
+-- BASE64 (pure Lua)
 -- ========================
 local b64chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
 local function b64encode(data)
-    return ((data:gsub(".", function(x)
-        local r, b = "", x:byte()
-        for i = 8, 1, -1 do r = r .. (b % 2^i - b % 2^(i-1) > 0 and "1" or "0") end
-        return r
-    end) .. "0000"):gsub("%d%d%d?%d?%d?%d?", function(x)
-        if #x < 6 then return "" end
-        local c = 0
-        for i = 1, 6 do c = c + (x:sub(i,i) == "1" and 2^(6-i) or 0) end
-        return b64chars:sub(c+1,c+1)
-    end) .. ({"","==","="})[#data % 3 + 1])
+    local result = {}
+    local padding = ""
+    data = tostring(data)
+    if #data % 3 == 1 then data = data .. "\0\0" padding = "=="
+    elseif #data % 3 == 2 then data = data .. "\0" padding = "=" end
+    for i = 1, #data, 3 do
+        local a, b, c = data:byte(i, i+2)
+        local i1 = math.floor(a/4)+1
+        local i2 = (a%4)*16+math.floor(b/16)+1
+        local i3 = (b%16)*4+math.floor(c/64)+1
+        local i4 = c%64+1
+        result[#result+1] = b64chars:sub(i1,i1)..b64chars:sub(i2,i2)..b64chars:sub(i3,i3)..b64chars:sub(i4,i4)
+    end
+    local encoded = table.concat(result)
+    if padding ~= "" then encoded = encoded:sub(1,-(#padding+1))..padding end
+    return encoded
 end
 
 local function b64decode(data)
-    data = data:gsub("[^"..b64chars.."=]", "")
-    return (data:gsub(".", function(x)
-        if x == "=" then return "" end
-        local r, f = "", (b64chars:find(x)-1)
-        for i = 6, 1, -1 do r = r .. (f % 2^i - f % 2^(i-1) > 0 and "1" or "0") end
-        return r
-    end):gsub("%d%d%d?%d?%d?%d?%d?%d?", function(x)
-        if #x ~= 8 then return "" end
-        local c = 0
-        for i = 1, 8 do c = c + (x:sub(i,i) == "1" and 2^(8-i) or 0) end
-        return string.char(c)
-    end))
+    local lookup = {}
+    for i = 1, #b64chars do lookup[b64chars:sub(i,i)] = i-1 end
+    data = data:gsub("[^%w+/=]","")
+    local result = {}
+    for i = 1, #data, 4 do
+        local a = lookup[data:sub(i,i)] or 0
+        local b = lookup[data:sub(i+1,i+1)] or 0
+        local c = lookup[data:sub(i+2,i+2)] or 0
+        local d = lookup[data:sub(i+3,i+3)] or 0
+        result[#result+1] = string.char(
+            a*4+math.floor(b/16),
+            (b%16)*16+math.floor(c/4),
+            (c%4)*64+d
+        )
+    end
+    return table.concat(result):gsub("\0+$","")
 end
 
 -- ========================
--- FOLDER SETUP
+-- PLAYER CONFIG
 -- ========================
-local function makeFolder(path)
-    if not isfolder(path) then makefolder(path) end
-end
-
-makeFolder("TrapLag")
-makeFolder("TrapLag/config")
-makeFolder("TrapLag/config/fonts")
-makeFolder("TrapLag/config/crosshair")
-makeFolder("TrapLag/config/image")
-makeFolder("TrapLag/config/player")
-
--- ========================
--- PLAYER CONFIG DEFAULT
--- ========================
+local HS = game:GetService("HttpService")
 local configPath = "TrapLag/config/player/settings.json"
 
-local defaultConfig = {
-    version           = TRAPLAG_VERSION,
+local playerConfig = {
     cameraSensitivity = 2.5,
     fpsTarget         = 240,
-    -- Toggles
-    reducedRender     = false,
     disableShadows    = false,
     disableAtmosphere = false,
     disablePostFX     = false,
@@ -71,67 +65,52 @@ local defaultConfig = {
     hideAccessories   = false,
     disableAnimations = false,
     disableSound      = false,
+    reduceRender      = false,
 }
 
-local playerConfig = {}
-for k, v in pairs(defaultConfig) do playerConfig[k] = v end
-
-local HttpService = game:GetService("HttpService")
-
 local function saveConfig()
-    playerConfig.version = TRAPLAG_VERSION
-    writefile(configPath, HttpService:JSONEncode(playerConfig))
+    -- Pastikan subfolder ada (WindUI hanya buat folder utama)
+    if not isfolder("TrapLag/config") then makefolder("TrapLag/config") end
+    if not isfolder("TrapLag/config/player") then makefolder("TrapLag/config/player") end
+    if not isfolder("TrapLag/config/fonts") then makefolder("TrapLag/config/fonts") end
+    if not isfolder("TrapLag/config/crosshair") then makefolder("TrapLag/config/crosshair") end
+    if not isfolder("TrapLag/config/image") then makefolder("TrapLag/config/image") end
+    writefile(configPath, HS:JSONEncode(playerConfig))
 end
 
 local function loadConfig()
     if isfile(configPath) then
         local ok, data = pcall(function()
-            return HttpService:JSONDecode(readfile(configPath))
+            return HS:JSONDecode(readfile(configPath))
         end)
         if ok and data then
-            -- Cek versi
-            if data.version ~= TRAPLAG_VERSION then
-                warn("[TrapLag] Config lama ditemukan, direset ke default.")
-                saveConfig()
-                return false, "outdated"
-            end
             for k, v in pairs(data) do
-                playerConfig[k] = v
+                if playerConfig[k] ~= nil then playerConfig[k] = v end
             end
-            return true, "ok"
         end
     end
-    return false, "notfound"
 end
 
 -- ========================
--- APPLY CONFIG (auto-apply semua setting)
+-- APPLY FUNCTIONS
 -- ========================
-local function applyAllSettings()
-    -- Camera sensitivity
+local function applyCamera()
     pcall(function()
         UserSettings():GetService("UserGameSettings").MouseSensitivity = playerConfig.cameraSensitivity
     end)
-
-    -- FPS
-    pcall(function() setfpscap(playerConfig.fpsTarget) end)
-
-    -- Render quality
-    settings().Rendering.QualityLevel = playerConfig.reducedRender
-        and Enum.QualityLevel.Level01 or Enum.QualityLevel.Automatic
-
-    -- Shadows
+end
+local function applyShadows()
     game:GetService("Lighting").GlobalShadows = not playerConfig.disableShadows
-
-    -- Atmosphere
+end
+local function applyAtmosphere()
     local atm = game:GetService("Lighting"):FindFirstChildOfClass("Atmosphere")
     if atm then
         atm.Density = playerConfig.disableAtmosphere and 0 or 0.395
         atm.Offset  = playerConfig.disableAtmosphere and 0 or 0.25
     end
     game:GetService("Lighting").FogEnd = playerConfig.disableAtmosphere and 9e9 or 100000
-
-    -- PostFX
+end
+local function applyPostFX()
     for _, e in ipairs(game:GetService("Lighting"):GetChildren()) do
         if e:IsA("BlurEffect") or e:IsA("BloomEffect")
         or e:IsA("ColorCorrectionEffect") or e:IsA("SunRaysEffect")
@@ -139,15 +118,15 @@ local function applyAllSettings()
             e.Enabled = not playerConfig.disablePostFX
         end
     end
-
-    -- Particles
+end
+local function applyParticles()
     for _, v in ipairs(workspace:GetDescendants()) do
         if v:IsA("ParticleEmitter") or v:IsA("Trail") or v:IsA("Beam") then
             v.Enabled = not playerConfig.disableParticles
         end
     end
-
-    -- Accessories
+end
+local function applyAccessories()
     for _, player in ipairs(game:GetService("Players"):GetPlayers()) do
         if player.Character then
             for _, v in ipairs(player.Character:GetDescendants()) do
@@ -157,106 +136,111 @@ local function applyAllSettings()
             end
         end
     end
-
-    -- Sound
+end
+local function applyAnimations()
+    if playerConfig.disableAnimations then
+        for _, player in ipairs(game:GetService("Players"):GetPlayers()) do
+            if player.Character then
+                local hum = player.Character:FindFirstChildOfClass("Humanoid")
+                if hum then
+                    local anim = hum:FindFirstChildOfClass("Animator")
+                    if anim then
+                        pcall(function()
+                            for _, t in ipairs(anim:GetPlayingAnimationTracks()) do t:Stop() end
+                        end)
+                    end
+                end
+            end
+        end
+    end
+end
+local function applySound()
     for _, v in ipairs(workspace:GetDescendants()) do
         if v:IsA("Sound") then v.Volume = playerConfig.disableSound and 0 or 1 end
     end
     game:GetService("SoundService").MusicVolume = playerConfig.disableSound and 0 or 1
 end
+local function applyRender()
+    settings().Rendering.QualityLevel = playerConfig.reduceRender
+        and Enum.QualityLevel.Level01
+        or Enum.QualityLevel.Automatic
+end
+local function applyFPS()
+    setfpscap(playerConfig.fpsTarget)
+end
+
+local function applyAllConfig()
+    applyCamera()
+    applyShadows()
+    applyAtmosphere()
+    applyPostFX()
+    applyParticles()
+    applyAccessories()
+    applyAnimations()
+    applySound()
+    applyRender()
+end
 
 -- ========================
--- LOAD & AUTO-APPLY
+-- EXPORT / IMPORT
 -- ========================
-local loadOk, loadStatus = loadConfig()
+local function exportConfig()
+    local code = VERSION .. ":" .. b64encode(HS:JSONEncode(playerConfig))
+    writefile("TrapLag/export.txt", code)
+    return code
+end
+
+local function importConfig(code)
+    local prefix = code:match("^([^:]+):")
+    if prefix ~= VERSION then return false, "expired" end
+    local encoded = code:match("^[^:]+:(.+)$")
+    if not encoded then return false, "invalid" end
+    local ok, data = pcall(function() return HS:JSONDecode(b64decode(encoded)) end)
+    if not ok or not data then return false, "invalid" end
+    for k, v in pairs(data) do
+        if playerConfig[k] ~= nil then playerConfig[k] = v end
+    end
+    saveConfig()
+    applyAllConfig()
+    return true, "ok"
+end
 
 -- ========================
--- WINDUI INIT
+-- LOAD & APPLY ON STARTUP
+-- ========================
+loadConfig()
+saveConfig() -- pastikan subfolder terbuat
+applyAllConfig()
+
+-- ========================
+-- WINDUI INIT (FIXED)
 -- ========================
 local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Footagesus/WindUI/main/dist/main.lua"))()
 
-local App = WindUI:CreateApp({
+local Window = WindUI:CreateWindow({
     Title = "TrapLag",
     Icon = "zap",
-    Author = "TrapLag v" .. TRAPLAG_VERSION,
+    Author = "TrapLag v2.1",
+    Folder = "TrapLag",  -- WindUI auto-buat folder ini
     MobileOpen = Enum.KeyCode.RightControl,
     Open = Enum.KeyCode.RightControl,
     Resize = true,
     Theme = "Dark",
 })
 
--- Notifikasi status load
-if loadOk then
-    WindUI:Notify({ Title = "TrapLag ✅", Content = "Config berhasil diload & diapply!", Duration = 4 })
-    applyAllSettings()
-elseif loadStatus == "outdated" then
-    WindUI:Notify({ Title = "TrapLag ⚠️", Content = "Config lama direset (versi berbeda).", Duration = 5 })
-else
-    WindUI:Notify({ Title = "TrapLag", Content = "Config baru dibuat. Selamat datang!", Duration = 3 })
-    saveConfig()
-end
-
--- ========================
--- EXPORT / IMPORT HELPER
--- ========================
-local importCodeBuffer = ""
-
-local function generateExportCode()
-    local exportData = {}
-    for k, v in pairs(playerConfig) do exportData[k] = v end
-    exportData.version = TRAPLAG_VERSION
-    local json = HttpService:JSONEncode(exportData)
-    return "TRAPLAG-" .. TRAPLAG_VERSION .. "-" .. b64encode(json)
-end
-
-local function importFromCode(code)
-    -- Validasi prefix
-    if not code:match("^TRAPLAG%-") then
-        return false, "invalid"
-    end
-
-    -- Cek versi dari kode
-    local codeVer = code:match("^TRAPLAG%-([^%-]+)%-")
-    if codeVer ~= TRAPLAG_VERSION then
-        return false, "expired"
-    end
-
-    -- Ambil data setelah prefix TRAPLAG-VER-
-    local encoded = code:match("^TRAPLAG%-.-%-(.*)")
-    if not encoded or encoded == "" then
-        return false, "invalid"
-    end
-
-    local ok, data = pcall(function()
-        return HttpService:JSONDecode(b64decode(encoded))
-    end)
-
-    if not ok or not data then
-        return false, "invalid"
-    end
-
-    -- Apply ke config
-    for k, v in pairs(data) do
-        playerConfig[k] = v
-    end
-    saveConfig()
-    applyAllSettings()
-    return true, "ok"
-end
-
 -- ========================
 -- TAB 1: ANTI LAG
 -- ========================
-local LagTab = App:Tab({ Title = "Anti Lag", Icon = "cpu" })
+local LagTab = Window:Tab({ Title = "Anti Lag", Icon = "cpu" })
 
 LagTab:Section({ Title = "FPS & Render" })
 
 LagTab:Button({
     Title = "FPS Unlocker",
-    Description = "Unlock FPS ke target (" .. playerConfig.fpsTarget .. ")",
+    Description = "Unlock FPS ke " .. playerConfig.fpsTarget,
     Icon = "gauge",
     Callback = function()
-        setfpscap(playerConfig.fpsTarget)
+        applyFPS()
         WindUI:Notify({ Title = "TrapLag", Content = "FPS di-unlock ke " .. playerConfig.fpsTarget .. "!", Duration = 3 })
     end,
 })
@@ -275,11 +259,10 @@ LagTab:Toggle({
     Title = "Reduce Render Distance",
     Description = "Kurangi jarak render objek",
     Icon = "eye",
-    Default = playerConfig.reducedRender,
+    Default = playerConfig.reduceRender,
     Callback = function(state)
-        playerConfig.reducedRender = state
-        settings().Rendering.QualityLevel = state and Enum.QualityLevel.Level01 or Enum.QualityLevel.Automatic
-        saveConfig()
+        playerConfig.reduceRender = state
+        applyRender() saveConfig()
     end,
 })
 
@@ -292,8 +275,7 @@ LagTab:Toggle({
     Default = playerConfig.disableShadows,
     Callback = function(state)
         playerConfig.disableShadows = state
-        game:GetService("Lighting").GlobalShadows = not state
-        saveConfig()
+        applyShadows() saveConfig()
         WindUI:Notify({ Title = "TrapLag", Content = state and "Shadows dimatikan!" or "Shadows dinyalakan!", Duration = 2 })
     end,
 })
@@ -305,13 +287,7 @@ LagTab:Toggle({
     Default = playerConfig.disableAtmosphere,
     Callback = function(state)
         playerConfig.disableAtmosphere = state
-        local atm = game:GetService("Lighting"):FindFirstChildOfClass("Atmosphere")
-        if atm then
-            atm.Density = state and 0 or 0.395
-            atm.Offset  = state and 0 or 0.25
-        end
-        game:GetService("Lighting").FogEnd = state and 9e9 or 100000
-        saveConfig()
+        applyAtmosphere() saveConfig()
     end,
 })
 
@@ -322,14 +298,7 @@ LagTab:Toggle({
     Default = playerConfig.disablePostFX,
     Callback = function(state)
         playerConfig.disablePostFX = state
-        for _, e in ipairs(game:GetService("Lighting"):GetChildren()) do
-            if e:IsA("BlurEffect") or e:IsA("BloomEffect")
-            or e:IsA("ColorCorrectionEffect") or e:IsA("SunRaysEffect")
-            or e:IsA("DepthOfFieldEffect") then
-                e.Enabled = not state
-            end
-        end
-        saveConfig()
+        applyPostFX() saveConfig()
     end,
 })
 
@@ -352,12 +321,7 @@ LagTab:Toggle({
     Default = playerConfig.disableParticles,
     Callback = function(state)
         playerConfig.disableParticles = state
-        for _, v in ipairs(workspace:GetDescendants()) do
-            if v:IsA("ParticleEmitter") or v:IsA("Trail") or v:IsA("Beam") then
-                v.Enabled = not state
-            end
-        end
-        saveConfig()
+        applyParticles() saveConfig()
     end,
 })
 
@@ -368,16 +332,7 @@ LagTab:Toggle({
     Default = playerConfig.hideAccessories,
     Callback = function(state)
         playerConfig.hideAccessories = state
-        for _, player in ipairs(game:GetService("Players"):GetPlayers()) do
-            if player.Character then
-                for _, v in ipairs(player.Character:GetDescendants()) do
-                    if v:IsA("Accessory") then
-                        v.Handle.Transparency = state and 1 or 0
-                    end
-                end
-            end
-        end
-        saveConfig()
+        applyAccessories() saveConfig()
     end,
 })
 
@@ -388,22 +343,7 @@ LagTab:Toggle({
     Default = playerConfig.disableAnimations,
     Callback = function(state)
         playerConfig.disableAnimations = state
-        if state then
-            for _, player in ipairs(game:GetService("Players"):GetPlayers()) do
-                if player.Character then
-                    local humanoid = player.Character:FindFirstChildOfClass("Humanoid")
-                    if humanoid then
-                        local animator = humanoid:FindFirstChildOfClass("Animator")
-                        if animator then
-                            pcall(function()
-                                for _, track in ipairs(animator:GetPlayingAnimationTracks()) do track:Stop() end
-                            end)
-                        end
-                    end
-                end
-            end
-        end
-        saveConfig()
+        applyAnimations() saveConfig()
     end,
 })
 
@@ -416,11 +356,7 @@ LagTab:Toggle({
     Default = playerConfig.disableSound,
     Callback = function(state)
         playerConfig.disableSound = state
-        for _, v in ipairs(workspace:GetDescendants()) do
-            if v:IsA("Sound") then v.Volume = state and 0 or 1 end
-        end
-        game:GetService("SoundService").MusicVolume = state and 0 or 1
-        saveConfig()
+        applySound() saveConfig()
     end,
 })
 
@@ -435,8 +371,9 @@ LagTab:Button({
         playerConfig.disableAtmosphere = true
         playerConfig.disablePostFX     = true
         playerConfig.disableParticles  = true
-        playerConfig.reducedRender     = true
-        applyAllSettings()
+        playerConfig.reduceRender      = true
+        applyFPS() applyShadows() applyAtmosphere()
+        applyPostFX() applyParticles() applyRender()
         saveConfig()
         WindUI:Notify({ Title = "TrapLag ⚡", Content = "Semua fitur anti-lag aktif!", Duration = 4 })
     end,
@@ -447,23 +384,29 @@ LagTab:Button({
     Description = "Kembalikan semua pengaturan ke default",
     Icon = "rotate-ccw",
     Callback = function()
-        for k, v in pairs(defaultConfig) do playerConfig[k] = v end
-        applyAllSettings()
-        saveConfig()
-        WindUI:Notify({ Title = "TrapLag", Content = "Semua pengaturan direset ke default!", Duration = 3 })
+        playerConfig.disableShadows    = false
+        playerConfig.disableAtmosphere = false
+        playerConfig.disablePostFX     = false
+        playerConfig.disableParticles  = false
+        playerConfig.reduceRender      = false
+        playerConfig.disableSound      = false
+        playerConfig.hideAccessories   = false
+        playerConfig.disableAnimations = false
+        applyAllConfig() saveConfig()
+        WindUI:Notify({ Title = "TrapLag", Content = "Semua pengaturan direset!", Duration = 3 })
     end,
 })
 
 -- ========================
 -- TAB 2: CONFIG
 -- ========================
-local CfgTab = App:Tab({ Title = "Config", Icon = "settings" })
+local CfgTab = Window:Tab({ Title = "Config", Icon = "settings" })
 
 CfgTab:Section({ Title = "Player Config" })
 
 CfgTab:Slider({
     Title = "Camera Sensitivity",
-    Description = "Sensitivitas kamera (0.1 - 7.0)",
+    Description = "Atur sensitivitas kamera (0.1 - 7.0)",
     Icon = "move",
     Min = 0.1,
     Max = 7,
@@ -471,16 +414,13 @@ CfgTab:Slider({
     Decimals = 1,
     Callback = function(value)
         playerConfig.cameraSensitivity = value
-        pcall(function()
-            UserSettings():GetService("UserGameSettings").MouseSensitivity = value
-        end)
-        saveConfig()
+        applyCamera() saveConfig()
     end,
 })
 
 CfgTab:Slider({
     Title = "FPS Target",
-    Description = "Target FPS untuk FPS Unlocker (30-240)",
+    Description = "Target FPS saat FPS Unlocker diaktifkan",
     Icon = "gauge",
     Min = 30,
     Max = 240,
@@ -496,7 +436,7 @@ CfgTab:Section({ Title = "Fonts" })
 
 CfgTab:Button({
     Title = "Lihat Font Tersedia",
-    Description = "Cek TrapLag/config/fonts/",
+    Description = "Cek file di TrapLag/config/fonts/",
     Icon = "type",
     Callback = function()
         local files = listfiles("TrapLag/config/fonts")
@@ -507,18 +447,43 @@ CfgTab:Button({
             end
         end
         if #names == 0 then
-            WindUI:Notify({ Title = "Fonts", Content = "Belum ada font! Taruh .ttf & .json di TrapLag/config/fonts/", Duration = 5 })
+            WindUI:Notify({ Title = "Fonts", Content = "Belum ada font! Taruh .ttf & .json di config/fonts/", Duration = 5 })
         else
             WindUI:Notify({ Title = "Font Tersedia", Content = table.concat(names, ", "), Duration = 5 })
         end
     end,
 })
 
-CfgTab:Section({ Title = "Crosshair" })
+CfgTab:Button({
+    Title = "Apply Font Custom",
+    Description = "Apply font pertama yang ditemukan",
+    Icon = "type",
+    Callback = function()
+        local files = listfiles("TrapLag/config/fonts")
+        local fontFile = nil
+        for _, f in ipairs(files) do
+            if f:match("%.ttf$") or f:match("%.otf$") then fontFile = f break end
+        end
+        if fontFile then
+            local fontName = fontFile:match("([^/\\]+)$")
+            local face = Font.new("rbxasset://fonts/" .. fontName)
+            for _, obj in ipairs(game:GetDescendants()) do
+                if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
+                    pcall(function() obj.FontFace = face end)
+                end
+            end
+            WindUI:Notify({ Title = "Font Applied", Content = fontName .. " berhasil!", Duration = 3 })
+        else
+            WindUI:Notify({ Title = "Font", Content = "Tidak ada file font di config/fonts/", Duration = 4 })
+        end
+    end,
+})
+
+CfgTab:Section({ Title = "Crosshair & Image" })
 
 CfgTab:Button({
     Title = "Lihat Crosshair Tersedia",
-    Description = "Cek TrapLag/config/crosshair/",
+    Description = "Cek file .png di TrapLag/config/crosshair/",
     Icon = "crosshair",
     Callback = function()
         local files = listfiles("TrapLag/config/crosshair")
@@ -527,14 +492,12 @@ CfgTab:Button({
             if f:match("%.png$") then table.insert(names, f:match("([^/\\]+)$") or f) end
         end
         if #names == 0 then
-            WindUI:Notify({ Title = "Crosshair", Content = "Belum ada crosshair! Taruh .png di TrapLag/config/crosshair/", Duration = 5 })
+            WindUI:Notify({ Title = "Crosshair", Content = "Belum ada! Taruh .png di config/crosshair/", Duration = 5 })
         else
-            WindUI:Notify({ Title = "Crosshair Tersedia", Content = table.concat(names, ", "), Duration = 5 })
+            WindUI:Notify({ Title = "Crosshair", Content = table.concat(names, ", "), Duration = 5 })
         end
     end,
 })
-
-CfgTab:Section({ Title = "Image / Logo" })
 
 CfgTab:Button({
     Title = "Cek Logo",
@@ -542,82 +505,81 @@ CfgTab:Button({
     Icon = "image",
     Callback = function()
         if isfile("TrapLag/logo.png") then
-            WindUI:Notify({ Title = "Logo ✅", Content = "logo.png ditemukan!", Duration = 3 })
+            WindUI:Notify({ Title = "Logo", Content = "logo.png ditemukan! ✅", Duration = 3 })
         else
-            WindUI:Notify({ Title = "Logo ❌", Content = "logo.png belum ada! Taruh di folder TrapLag/", Duration = 4 })
+            WindUI:Notify({ Title = "Logo", Content = "logo.png belum ada! Taruh di folder TrapLag/", Duration = 4 })
         end
     end,
 })
 
--- ========================
--- EXPORT / IMPORT SECTION
--- ========================
 CfgTab:Section({ Title = "Export & Import Config" })
 
--- EXPORT
 CfgTab:Button({
     Title = "📤 Export Config",
-    Description = "Buat kode config untuk dibagikan ke player lain",
-    Icon = "share-2",
+    Description = "Generate kode → simpan di TrapLag/export.txt",
+    Icon = "share",
     Callback = function()
-        local code = generateExportCode()
-        -- Copy ke clipboard kalau executor support
-        pcall(function() setclipboard(code) end)
-        -- Simpan ke file juga
-        writefile("TrapLag/config/player/export.txt", code)
+        local code = exportConfig()
+        local preview = code:sub(1, 40) .. "..."
         WindUI:Notify({
-            Title = "Export Berhasil! 📤",
-            Content = "Kode disalin ke clipboard & disimpan di TrapLag/config/player/export.txt",
+            Title = "Config Exported! ✅",
+            Content = "Disimpan di TrapLag/export.txt\n" .. preview,
             Duration = 6,
         })
-        warn("[TrapLag Export Code]\n" .. code)
     end,
 })
 
--- IMPORT INPUT
-CfgTab:Input({
-    Title = "Import Code",
-    Description = "Paste kode config dari player lain, lalu tekan Enter",
-    Icon = "download",
-    Placeholder = "Paste kode TRAPLAG-... disini",
-    Callback = function(input)
-        importCodeBuffer = input
-    end,
-})
-
--- IMPORT BUTTON
 CfgTab:Button({
-    Title = "📥 Apply Import",
-    Description = "Tekan untuk apply kode yang sudah di-paste",
-    Icon = "check-circle",
+    Title = "📋 Copy Kode Export",
+    Description = "Copy kode ke clipboard",
+    Icon = "copy",
     Callback = function()
-        if importCodeBuffer == "" then
-            WindUI:Notify({ Title = "Import ❌", Content = "Kode kosong! Paste dulu kodenya.", Duration = 4 })
-            return
-        end
-
-        local ok, status = importFromCode(importCodeBuffer)
-
-        if ok then
-            WindUI:Notify({
-                Title = "Import Berhasil! ✅",
-                Content = "Config berhasil diload & diapply!",
-                Duration = 4,
-            })
-        elseif status == "expired" then
-            WindUI:Notify({
-                Title = "Import Gagal ⚠️",
-                Content = "Kode sudah EXPIRED! TrapLag versi berbeda (v" .. TRAPLAG_VERSION .. ").",
-                Duration = 6,
-            })
+        if isfile("TrapLag/export.txt") then
+            local code = readfile("TrapLag/export.txt")
+            setclipboard(code)
+            WindUI:Notify({ Title = "Copied! ✅", Content = "Kode berhasil dicopy ke clipboard!", Duration = 3 })
         else
+            WindUI:Notify({ Title = "Export dulu!", Content = "Klik Export Config terlebih dahulu.", Duration = 3 })
+        end
+    end,
+})
+
+CfgTab:Button({
+    Title = "📥 Import Config",
+    Description = "Paste kode di TrapLag/import.txt lalu klik ini",
+    Icon = "download",
+    Callback = function()
+        if not isfile("TrapLag/import.txt") then
+            writefile("TrapLag/import.txt", "")
             WindUI:Notify({
-                Title = "Import Gagal ❌",
-                Content = "Kode tidak valid atau rusak. Cek ulang kodenya!",
+                Title = "Import",
+                Content = "File import.txt dibuat! Paste kode di sana lalu klik Import lagi.",
                 Duration = 5,
             })
+            return
         end
-
-        importCodeBuffer = ""
+        local code = readfile("TrapLag/import.txt"):gsub("%s+","")
+        if code == "" then
+            WindUI:Notify({ Title = "Import", Content = "import.txt kosong! Paste kode dulu.", Duration = 4 })
+            return
+        end
+        local success, reason = importConfig(code)
+        if success then
+            WindUI:Notify({ Title = "Import Berhasil! ✅", Content = "Config berhasil diload & diapply!", Duration = 4 })
+            writefile("TrapLag/import.txt", "")
+        elseif reason == "expired" then
+            WindUI:Notify({ Title = "❌ Kode Expired!", Content = "Kode dari versi lama TrapLag, tidak kompatibel.", Duration = 5 })
+        else
+            WindUI:Notify({ Title = "❌ Kode Tidak Valid!", Content = "Kode salah atau rusak. Cek kembali.", Duration = 5 })
+        end
     end,
+})
+
+-- ========================
+-- STARTUP NOTIFY
+-- ========================
+WindUI:Notify({
+    Title = "TrapLag v2.1 ✅",
+    Content = "Config berhasil diload & diapply otomatis!",
+    Duration = 4,
 })
