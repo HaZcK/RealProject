@@ -834,8 +834,15 @@ local soundScroll = addTab("Sound","🎵")
 local chatScroll  = addTab("Chat","💬")
 local cfgScroll   = addTab("Config","⚙️")
 
--- Open first tab
-tabs[1].btn:SimulateClick() -- auto trigger
+-- Open first tab manually
+do
+    local t = tabs[1]
+    activeTab = t
+    t.btn.BackgroundColor3 = Color3.fromRGB(0,150,255)
+    t.btn.BackgroundTransparency = 0.3
+    t.btn.TextColor3 = Color3.fromRGB(255,255,255)
+    t.scroll.Visible = true
+end
 
 -- ========================
 -- TAB: ANTI LAG
