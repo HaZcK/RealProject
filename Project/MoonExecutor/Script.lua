@@ -15,6 +15,7 @@ local LMG2L = {};
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui
 LMG2L["ScreenGui_1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
 LMG2L["ScreenGui_1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+LMG2L["ScreenGui_1"]["ResetOnSpawn"] = false;
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame
@@ -69,19 +70,9 @@ LMG2L["UIAspectRatioConstraint_8"] = Instance.new("UIAspectRatioConstraint", LMG
 LMG2L["UIAspectRatioConstraint_8"]["AspectRatio"] = 1.79688;
 
 
--- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.MoonExecutorText
-LMG2L["MoonExecutorText_9"] = Instance.new("TextLabel", LMG2L["MenuInjectFrame_2"]);
-LMG2L["MoonExecutorText_9"]["TextWrapped"] = true;
-LMG2L["MoonExecutorText_9"]["TextStrokeTransparency"] = 0;
-LMG2L["MoonExecutorText_9"]["BorderSizePixel"] = 0;
-LMG2L["MoonExecutorText_9"]["TextScaled"] = true;
-LMG2L["MoonExecutorText_9"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["MoonExecutorText_9"]["FontFace"] = Font.new([[rbxasset://fonts/families/Arial.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-LMG2L["MoonExecutorText_9"]["TextColor3"] = Color3.fromRGB(252, 15, 47);
-LMG2L["MoonExecutorText_9"]["BackgroundTransparency"] = 1;
-LMG2L["MoonExecutorText_9"]["Size"] = UDim2.new(0.99565, 0, 0.17969, 0);
-LMG2L["MoonExecutorText_9"]["Text"] = [[MoonExecutor]];
-LMG2L["MoonExecutorText_9"]["Name"] = [[MoonExecutorText]];
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.DraggingScript
+LMG2L["DraggingScript_9"] = Instance.new("LocalScript", LMG2L["MenuInjectFrame_2"]);
+LMG2L["DraggingScript_9"]["Name"] = [[DraggingScript]];
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.UIStroke
@@ -89,9 +80,19 @@ LMG2L["UIStroke_a"] = Instance.new("UIStroke", LMG2L["MenuInjectFrame_2"]);
 LMG2L["UIStroke_a"]["Color"] = Color3.fromRGB(255, 0, 0);
 
 
--- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.DraggingScript
-LMG2L["DraggingScript_b"] = Instance.new("LocalScript", LMG2L["MenuInjectFrame_2"]);
-LMG2L["DraggingScript_b"]["Name"] = [[DraggingScript]];
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.MoonExecutorText
+LMG2L["MoonExecutorText_b"] = Instance.new("TextLabel", LMG2L["MenuInjectFrame_2"]);
+LMG2L["MoonExecutorText_b"]["TextWrapped"] = true;
+LMG2L["MoonExecutorText_b"]["TextStrokeTransparency"] = 0;
+LMG2L["MoonExecutorText_b"]["BorderSizePixel"] = 0;
+LMG2L["MoonExecutorText_b"]["TextScaled"] = true;
+LMG2L["MoonExecutorText_b"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["MoonExecutorText_b"]["FontFace"] = Font.new([[rbxasset://fonts/families/Arial.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+LMG2L["MoonExecutorText_b"]["TextColor3"] = Color3.fromRGB(252, 15, 47);
+LMG2L["MoonExecutorText_b"]["BackgroundTransparency"] = 1;
+LMG2L["MoonExecutorText_b"]["Size"] = UDim2.new(0.99565, 0, 0.17969, 0);
+LMG2L["MoonExecutorText_b"]["Text"] = [[MoonExecutor]];
+LMG2L["MoonExecutorText_b"]["Name"] = [[MoonExecutorText]];
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MainFrame
@@ -126,84 +127,84 @@ LMG2L["UICorner_e"] = Instance.new("UICorner", LMG2L["MainFrame_c"]);
 LMG2L["UICorner_e"]["CornerRadius"] = UDim.new(0.01, 0);
 
 
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MainFrame.CoderBox
+LMG2L["CoderBox_f"] = Instance.new("TextBox", LMG2L["MainFrame_c"]);
+LMG2L["CoderBox_f"]["Name"] = [[CoderBox]];
+LMG2L["CoderBox_f"]["TextXAlignment"] = Enum.TextXAlignment.Left;
+LMG2L["CoderBox_f"]["PlaceholderColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["CoderBox_f"]["BorderSizePixel"] = 0;
+LMG2L["CoderBox_f"]["TextWrapped"] = true;
+LMG2L["CoderBox_f"]["TextSize"] = 18;
+LMG2L["CoderBox_f"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["CoderBox_f"]["TextYAlignment"] = Enum.TextYAlignment.Top;
+LMG2L["CoderBox_f"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
+LMG2L["CoderBox_f"]["RichText"] = true;
+LMG2L["CoderBox_f"]["FontFace"] = Font.new([[rbxasset://fonts/families/Arial.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+LMG2L["CoderBox_f"]["MultiLine"] = true;
+LMG2L["CoderBox_f"]["PlaceholderText"] = [[Paste Your Script Here!]];
+LMG2L["CoderBox_f"]["Size"] = UDim2.new(0.84828, 0, 0.65922, 0);
+LMG2L["CoderBox_f"]["Position"] = UDim2.new(0.08621, 0, 0.12291, 0);
+LMG2L["CoderBox_f"]["Text"] = [[Paste Your Script Here]];
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MainFrame.CoderBox.UICorner
+LMG2L["UICorner_10"] = Instance.new("UICorner", LMG2L["CoderBox_f"]);
+LMG2L["UICorner_10"]["CornerRadius"] = UDim.new(0, 1);
+
+
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MainFrame.UIAspectRatioConstraint
-LMG2L["UIAspectRatioConstraint_f"] = Instance.new("UIAspectRatioConstraint", LMG2L["MainFrame_c"]);
-LMG2L["UIAspectRatioConstraint_f"]["AspectRatio"] = 1.62011;
+LMG2L["UIAspectRatioConstraint_11"] = Instance.new("UIAspectRatioConstraint", LMG2L["MainFrame_c"]);
+LMG2L["UIAspectRatioConstraint_11"]["AspectRatio"] = 1.62011;
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MainFrame.UIStroke
-LMG2L["UIStroke_10"] = Instance.new("UIStroke", LMG2L["MainFrame_c"]);
-LMG2L["UIStroke_10"]["Thickness"] = 7;
+LMG2L["UIStroke_12"] = Instance.new("UIStroke", LMG2L["MainFrame_c"]);
+LMG2L["UIStroke_12"]["Thickness"] = 7;
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MainFrame.ExecuteButton
-LMG2L["ExecuteButton_11"] = Instance.new("TextButton", LMG2L["MainFrame_c"]);
-LMG2L["ExecuteButton_11"]["TextWrapped"] = true;
-LMG2L["ExecuteButton_11"]["BorderSizePixel"] = 0;
-LMG2L["ExecuteButton_11"]["TextScaled"] = true;
-LMG2L["ExecuteButton_11"]["TextColor3"] = Color3.fromRGB(22, 255, 19);
-LMG2L["ExecuteButton_11"]["BackgroundColor3"] = Color3.fromRGB(9, 9, 9);
-LMG2L["ExecuteButton_11"]["FontFace"] = Font.new([[rbxasset://fonts/families/Arial.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-LMG2L["ExecuteButton_11"]["Size"] = UDim2.new(0.18276, 0, 0.10615, 0);
-LMG2L["ExecuteButton_11"]["Text"] = [[Execute]];
-LMG2L["ExecuteButton_11"]["Name"] = [[ExecuteButton]];
-LMG2L["ExecuteButton_11"]["Position"] = UDim2.new(0.0931, 0, 0.85475, 0);
+LMG2L["ExecuteButton_13"] = Instance.new("TextButton", LMG2L["MainFrame_c"]);
+LMG2L["ExecuteButton_13"]["TextWrapped"] = true;
+LMG2L["ExecuteButton_13"]["BorderSizePixel"] = 0;
+LMG2L["ExecuteButton_13"]["TextScaled"] = true;
+LMG2L["ExecuteButton_13"]["TextColor3"] = Color3.fromRGB(22, 255, 19);
+LMG2L["ExecuteButton_13"]["BackgroundColor3"] = Color3.fromRGB(9, 9, 9);
+LMG2L["ExecuteButton_13"]["FontFace"] = Font.new([[rbxasset://fonts/families/Arial.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+LMG2L["ExecuteButton_13"]["Size"] = UDim2.new(0.18276, 0, 0.10615, 0);
+LMG2L["ExecuteButton_13"]["Text"] = [[Execute]];
+LMG2L["ExecuteButton_13"]["Name"] = [[ExecuteButton]];
+LMG2L["ExecuteButton_13"]["Position"] = UDim2.new(0.0931, 0, 0.85475, 0);
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MainFrame.ExecuteButton.UICorner
-LMG2L["UICorner_12"] = Instance.new("UICorner", LMG2L["ExecuteButton_11"]);
+LMG2L["UICorner_14"] = Instance.new("UICorner", LMG2L["ExecuteButton_13"]);
 
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MainFrame.ExecuteButton.EXECUTESCRIPT
-LMG2L["EXECUTESCRIPT_13"] = Instance.new("LocalScript", LMG2L["ExecuteButton_11"]);
-LMG2L["EXECUTESCRIPT_13"]["Name"] = [[EXECUTESCRIPT]];
-
-
--- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MainFrame.MoonExecutor
-LMG2L["MoonExecutor_14"] = Instance.new("TextLabel", LMG2L["MainFrame_c"]);
-LMG2L["MoonExecutor_14"]["TextWrapped"] = true;
-LMG2L["MoonExecutor_14"]["TextStrokeTransparency"] = 0;
-LMG2L["MoonExecutor_14"]["BorderSizePixel"] = 0;
-LMG2L["MoonExecutor_14"]["TextScaled"] = true;
-LMG2L["MoonExecutor_14"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["MoonExecutor_14"]["FontFace"] = Font.new([[rbxasset://fonts/families/Arial.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-LMG2L["MoonExecutor_14"]["TextColor3"] = Color3.fromRGB(252, 15, 47);
-LMG2L["MoonExecutor_14"]["BackgroundTransparency"] = 1;
-LMG2L["MoonExecutor_14"]["Size"] = UDim2.new(0.78966, 0, 0.12849, 0);
-LMG2L["MoonExecutor_14"]["Text"] = [[MoonExecutor]];
-LMG2L["MoonExecutor_14"]["Name"] = [[MoonExecutor]];
-LMG2L["MoonExecutor_14"]["Position"] = UDim2.new(0.11379, 0, -0.00559, 0);
-
-
--- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MainFrame.CoderBox
-LMG2L["CoderBox_15"] = Instance.new("TextBox", LMG2L["MainFrame_c"]);
-LMG2L["CoderBox_15"]["Name"] = [[CoderBox]];
-LMG2L["CoderBox_15"]["TextXAlignment"] = Enum.TextXAlignment.Left;
-LMG2L["CoderBox_15"]["PlaceholderColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["CoderBox_15"]["BorderSizePixel"] = 0;
-LMG2L["CoderBox_15"]["TextWrapped"] = true;
-LMG2L["CoderBox_15"]["TextSize"] = 18;
-LMG2L["CoderBox_15"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["CoderBox_15"]["TextYAlignment"] = Enum.TextYAlignment.Top;
-LMG2L["CoderBox_15"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
-LMG2L["CoderBox_15"]["RichText"] = true;
-LMG2L["CoderBox_15"]["FontFace"] = Font.new([[rbxasset://fonts/families/Arial.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-LMG2L["CoderBox_15"]["MultiLine"] = true;
-LMG2L["CoderBox_15"]["PlaceholderText"] = [[Paste Your Script Here!]];
-LMG2L["CoderBox_15"]["Size"] = UDim2.new(0.84828, 0, 0.65922, 0);
-LMG2L["CoderBox_15"]["Position"] = UDim2.new(0.08621, 0, 0.12291, 0);
-LMG2L["CoderBox_15"]["Text"] = [[Paste Your Script Here]];
-
-
--- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MainFrame.CoderBox.UICorner
-LMG2L["UICorner_16"] = Instance.new("UICorner", LMG2L["CoderBox_15"]);
-LMG2L["UICorner_16"]["CornerRadius"] = UDim.new(0, 1);
+LMG2L["EXECUTESCRIPT_15"] = Instance.new("LocalScript", LMG2L["ExecuteButton_13"]);
+LMG2L["EXECUTESCRIPT_15"]["Name"] = [[EXECUTESCRIPT]];
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MainFrame.DraggingScript
-LMG2L["DraggingScript_17"] = Instance.new("LocalScript", LMG2L["MainFrame_c"]);
-LMG2L["DraggingScript_17"]["Name"] = [[DraggingScript]];
+LMG2L["DraggingScript_16"] = Instance.new("LocalScript", LMG2L["MainFrame_c"]);
+LMG2L["DraggingScript_16"]["Name"] = [[DraggingScript]];
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MainFrame.MoonExecutor
+LMG2L["MoonExecutor_17"] = Instance.new("TextLabel", LMG2L["MainFrame_c"]);
+LMG2L["MoonExecutor_17"]["TextWrapped"] = true;
+LMG2L["MoonExecutor_17"]["TextStrokeTransparency"] = 0;
+LMG2L["MoonExecutor_17"]["BorderSizePixel"] = 0;
+LMG2L["MoonExecutor_17"]["TextScaled"] = true;
+LMG2L["MoonExecutor_17"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["MoonExecutor_17"]["FontFace"] = Font.new([[rbxasset://fonts/families/Arial.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+LMG2L["MoonExecutor_17"]["TextColor3"] = Color3.fromRGB(252, 15, 47);
+LMG2L["MoonExecutor_17"]["BackgroundTransparency"] = 1;
+LMG2L["MoonExecutor_17"]["Size"] = UDim2.new(0.78966, 0, 0.12849, 0);
+LMG2L["MoonExecutor_17"]["Text"] = [[MoonExecutor]];
+LMG2L["MoonExecutor_17"]["Name"] = [[MoonExecutor]];
+LMG2L["MoonExecutor_17"]["Position"] = UDim2.new(0.11379, 0, -0.00559, 0);
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.Scanning .ScanScript
@@ -306,13 +307,13 @@ local function C_5()
 			task.wait(0.5)	
 	
 			local hint = Instance.new("Hint")	
-			hint.Text = "Thanks for using my executor! | By KHAFIDZKTP"	
+			hint.Text = "Thanks for using my executor! | By KHAFIDZKTP | DISPLAYNAME YTZ_DEXZ"	
 			hint.Parent = player.Character	
 	
 			mainFrame.Visible = true	
 			menuInjectFrame.Visible = false	
 	
-			task.wait(5)	
+			task.wait(100)	
 			hint:Destroy()	
 		else	
 			button.TextColor3 = Color3.fromRGB(255, 0, 0)	
@@ -326,8 +327,8 @@ local function C_5()
 end;
 task.spawn(C_5);
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.DraggingScript
-local function C_b()
-	local script = LMG2L["DraggingScript_b"];
+local function C_9()
+	local script = LMG2L["DraggingScript_9"];
 	local frame = script.Parent -- MainFrame	
 	local UIS = game:GetService("UserInputService")	
 	
@@ -362,10 +363,10 @@ local function C_b()
 		end	
 	end)	
 end;
-task.spawn(C_b);
+task.spawn(C_9);
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MainFrame.ExecuteButton.EXECUTESCRIPT
-local function C_13()
-	local script = LMG2L["EXECUTESCRIPT_13"];
+local function C_15()
+	local script = LMG2L["EXECUTESCRIPT_15"];
 	local button = script.Parent	
 	local mainFrame = button.Parent -- ExecuteButton > MainFrame	
 	local coderBox = mainFrame:WaitForChild("CoderBox")	
@@ -419,10 +420,10 @@ local function C_13()
 		end	
 	end)	
 end;
-task.spawn(C_13);
+task.spawn(C_15);
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MainFrame.DraggingScript
-local function C_17()
-	local script = LMG2L["DraggingScript_17"];
+local function C_16()
+	local script = LMG2L["DraggingScript_16"];
 	local frame = script.Parent -- MainFrame	
 	local UIS = game:GetService("UserInputService")	
 	
@@ -457,6 +458,6 @@ local function C_17()
 		end	
 	end)	
 end;
-task.spawn(C_17);
+task.spawn(C_16);
 
 return LMG2L["ScreenGui_1"], require;
