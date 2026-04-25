@@ -69,51 +69,51 @@ LMG2L["UIAspectRatioConstraint_8"] = Instance.new("UIAspectRatioConstraint", LMG
 LMG2L["UIAspectRatioConstraint_8"]["AspectRatio"] = 1.79688;
 
 
--- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.UIStroke
-LMG2L["UIStroke_9"] = Instance.new("UIStroke", LMG2L["MenuInjectFrame_2"]);
-LMG2L["UIStroke_9"]["Color"] = Color3.fromRGB(255, 0, 0);
-
-
--- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.MoonExecutorText
-LMG2L["MoonExecutorText_a"] = Instance.new("TextLabel", LMG2L["MenuInjectFrame_2"]);
-LMG2L["MoonExecutorText_a"]["TextWrapped"] = true;
-LMG2L["MoonExecutorText_a"]["TextStrokeTransparency"] = 0;
-LMG2L["MoonExecutorText_a"]["BorderSizePixel"] = 0;
-LMG2L["MoonExecutorText_a"]["TextScaled"] = true;
-LMG2L["MoonExecutorText_a"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["MoonExecutorText_a"]["FontFace"] = Font.new([[rbxasset://fonts/families/Arial.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-LMG2L["MoonExecutorText_a"]["TextColor3"] = Color3.fromRGB(252, 15, 47);
-LMG2L["MoonExecutorText_a"]["BackgroundTransparency"] = 1;
-LMG2L["MoonExecutorText_a"]["Size"] = UDim2.new(0.99565, 0, 0.17969, 0);
-LMG2L["MoonExecutorText_a"]["Text"] = [[MoonExecutor ]];
-LMG2L["MoonExecutorText_a"]["Name"] = [[MoonExecutorText]];
-
-
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.Reborns
-LMG2L["Reborns_b"] = Instance.new("TextLabel", LMG2L["MenuInjectFrame_2"]);
-LMG2L["Reborns_b"]["TextWrapped"] = true;
-LMG2L["Reborns_b"]["BorderSizePixel"] = 0;
-LMG2L["Reborns_b"]["TextScaled"] = true;
-LMG2L["Reborns_b"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["Reborns_b"]["FontFace"] = Font.new([[rbxasset://fonts/families/Inconsolata.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
-LMG2L["Reborns_b"]["TextColor3"] = Color3.fromRGB(255, 24, 189);
-LMG2L["Reborns_b"]["BackgroundTransparency"] = 1;
-LMG2L["Reborns_b"]["Size"] = UDim2.new(0, 132, 0, 50);
-LMG2L["Reborns_b"]["Text"] = [[[REBORN]]];
-LMG2L["Reborns_b"]["Name"] = [[Reborns]];
-LMG2L["Reborns_b"]["Position"] = UDim2.new(0, 164, 0, 208);
+LMG2L["Reborns_9"] = Instance.new("TextLabel", LMG2L["MenuInjectFrame_2"]);
+LMG2L["Reborns_9"]["TextWrapped"] = true;
+LMG2L["Reborns_9"]["BorderSizePixel"] = 0;
+LMG2L["Reborns_9"]["TextScaled"] = true;
+LMG2L["Reborns_9"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["Reborns_9"]["FontFace"] = Font.new([[rbxasset://fonts/families/Inconsolata.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+LMG2L["Reborns_9"]["TextColor3"] = Color3.fromRGB(255, 24, 190);
+LMG2L["Reborns_9"]["BackgroundTransparency"] = 1;
+LMG2L["Reborns_9"]["Size"] = UDim2.new(0, 132, 0, 50);
+LMG2L["Reborns_9"]["Text"] = [[[REBORN]]];
+LMG2L["Reborns_9"]["Name"] = [[Reborns]];
+LMG2L["Reborns_9"]["Position"] = UDim2.new(0, 164, 0, 208);
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.DraggingScript
-LMG2L["DraggingScript_c"] = Instance.new("LocalScript", LMG2L["MenuInjectFrame_2"]);
-LMG2L["DraggingScript_c"]["Name"] = [[DraggingScript]];
+LMG2L["DraggingScript_a"] = Instance.new("LocalScript", LMG2L["MenuInjectFrame_2"]);
+LMG2L["DraggingScript_a"]["Name"] = [[DraggingScript]];
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.UIStroke
+LMG2L["UIStroke_b"] = Instance.new("UIStroke", LMG2L["MenuInjectFrame_2"]);
+LMG2L["UIStroke_b"]["Color"] = Color3.fromRGB(255, 0, 0);
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.MoonExecutorText
+LMG2L["MoonExecutorText_c"] = Instance.new("TextLabel", LMG2L["MenuInjectFrame_2"]);
+LMG2L["MoonExecutorText_c"]["TextWrapped"] = true;
+LMG2L["MoonExecutorText_c"]["TextStrokeTransparency"] = 0;
+LMG2L["MoonExecutorText_c"]["BorderSizePixel"] = 0;
+LMG2L["MoonExecutorText_c"]["TextScaled"] = true;
+LMG2L["MoonExecutorText_c"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["MoonExecutorText_c"]["FontFace"] = Font.new([[rbxasset://fonts/families/Arial.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+LMG2L["MoonExecutorText_c"]["TextColor3"] = Color3.fromRGB(252, 15, 47);
+LMG2L["MoonExecutorText_c"]["BackgroundTransparency"] = 1;
+LMG2L["MoonExecutorText_c"]["Size"] = UDim2.new(0.99565, 0, 0.17969, 0);
+LMG2L["MoonExecutorText_c"]["Text"] = [[MoonExecutor ]];
+LMG2L["MoonExecutorText_c"]["Name"] = [[MoonExecutorText]];
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame
 LMG2L["ExecutorFrame_d"] = Instance.new("Frame", LMG2L["ScreenGui_1"]);
 LMG2L["ExecutorFrame_d"]["Visible"] = false;
 LMG2L["ExecutorFrame_d"]["BorderSizePixel"] = 0;
-LMG2L["ExecutorFrame_d"]["BackgroundColor3"] = Color3.fromRGB(0, 23, 35);
+LMG2L["ExecutorFrame_d"]["BackgroundColor3"] = Color3.fromRGB(0, 24, 36);
 LMG2L["ExecutorFrame_d"]["Size"] = UDim2.new(0, 608, 0, 354);
 LMG2L["ExecutorFrame_d"]["Position"] = UDim2.new(0, 270, 0, 140);
 LMG2L["ExecutorFrame_d"]["Name"] = [[ExecutorFrame]];
@@ -125,103 +125,103 @@ LMG2L["UICorner_e"] = Instance.new("UICorner", LMG2L["ExecutorFrame_d"]);
 
 
 
--- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame.DraggingScript
-LMG2L["DraggingScript_f"] = Instance.new("LocalScript", LMG2L["ExecutorFrame_d"]);
-LMG2L["DraggingScript_f"]["Name"] = [[DraggingScript]];
-
-
--- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame.TextTitle
-LMG2L["TextTitle_10"] = Instance.new("TextLabel", LMG2L["ExecutorFrame_d"]);
-LMG2L["TextTitle_10"]["TextWrapped"] = true;
-LMG2L["TextTitle_10"]["TextStrokeTransparency"] = 0;
-LMG2L["TextTitle_10"]["BorderSizePixel"] = 0;
-LMG2L["TextTitle_10"]["TextScaled"] = true;
-LMG2L["TextTitle_10"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["TextTitle_10"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-LMG2L["TextTitle_10"]["TextColor3"] = Color3.fromRGB(22, 5, 255);
-LMG2L["TextTitle_10"]["BackgroundTransparency"] = 1;
-LMG2L["TextTitle_10"]["Size"] = UDim2.new(0, 330, 0, 64);
-LMG2L["TextTitle_10"]["Text"] = [[MoonExecutor [Reborn]]];
-LMG2L["TextTitle_10"]["Name"] = [[TextTitle]];
-LMG2L["TextTitle_10"]["Position"] = UDim2.new(0, 144, 0, -10);
-
-
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame.MainBox
-LMG2L["MainBox_11"] = Instance.new("TextBox", LMG2L["ExecutorFrame_d"]);
-LMG2L["MainBox_11"]["Name"] = [[MainBox]];
-LMG2L["MainBox_11"]["TextXAlignment"] = Enum.TextXAlignment.Left;
-LMG2L["MainBox_11"]["BorderSizePixel"] = 0;
-LMG2L["MainBox_11"]["TextYAlignment"] = Enum.TextYAlignment.Top;
-LMG2L["MainBox_11"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
-LMG2L["MainBox_11"]["FontFace"] = Font.new([[rbxasset://fonts/families/Inconsolata.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
-LMG2L["MainBox_11"]["MultiLine"] = true;
-LMG2L["MainBox_11"]["PlaceholderText"] = [[MADE BY KHAFIDZKTP  [REBORN]]];
-LMG2L["MainBox_11"]["Size"] = UDim2.new(0, 480, 0, 230);
-LMG2L["MainBox_11"]["Position"] = UDim2.new(0, 66, 0, 52);
-LMG2L["MainBox_11"]["Text"] = [[]];
+LMG2L["MainBox_f"] = Instance.new("TextBox", LMG2L["ExecutorFrame_d"]);
+LMG2L["MainBox_f"]["Name"] = [[MainBox]];
+LMG2L["MainBox_f"]["TextXAlignment"] = Enum.TextXAlignment.Left;
+LMG2L["MainBox_f"]["BorderSizePixel"] = 0;
+LMG2L["MainBox_f"]["TextYAlignment"] = Enum.TextYAlignment.Top;
+LMG2L["MainBox_f"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
+LMG2L["MainBox_f"]["FontFace"] = Font.new([[rbxasset://fonts/families/Inconsolata.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+LMG2L["MainBox_f"]["MultiLine"] = true;
+LMG2L["MainBox_f"]["PlaceholderText"] = [[MADE BY KHAFIDZKTP  [REBORN]]];
+LMG2L["MainBox_f"]["Size"] = UDim2.new(0, 480, 0, 230);
+LMG2L["MainBox_f"]["Position"] = UDim2.new(0, 66, 0, 52);
+LMG2L["MainBox_f"]["Text"] = [[]];
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame.MainBox.UICorner
-LMG2L["UICorner_12"] = Instance.new("UICorner", LMG2L["MainBox_11"]);
+LMG2L["UICorner_10"] = Instance.new("UICorner", LMG2L["MainBox_f"]);
 
-
-
--- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame.ExecuterButton
-LMG2L["ExecuterButton_13"] = Instance.new("TextButton", LMG2L["ExecutorFrame_d"]);
-LMG2L["ExecuterButton_13"]["TextWrapped"] = true;
-LMG2L["ExecuterButton_13"]["BorderSizePixel"] = 0;
-LMG2L["ExecuterButton_13"]["TextScaled"] = true;
-LMG2L["ExecuterButton_13"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
-LMG2L["ExecuterButton_13"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["ExecuterButton_13"]["FontFace"] = Font.new([[rbxasset://fonts/families/AccanthisADFStd.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
-LMG2L["ExecuterButton_13"]["Size"] = UDim2.new(0, 80, 0, 32);
-LMG2L["ExecuterButton_13"]["Text"] = [[Execute]];
-LMG2L["ExecuterButton_13"]["Name"] = [[ExecuterButton]];
-LMG2L["ExecuterButton_13"]["Position"] = UDim2.new(0, 80, 0, 298);
-
-
--- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame.ExecuterButton.UICorner
-LMG2L["UICorner_14"] = Instance.new("UICorner", LMG2L["ExecuterButton_13"]);
-
-
-
--- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame.ExecuterButton.UIGradient
-LMG2L["UIGradient_15"] = Instance.new("UIGradient", LMG2L["ExecuterButton_13"]);
-LMG2L["UIGradient_15"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 0, 0)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
-
-
--- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame.ExecuterButton.MainExecute
-LMG2L["MainExecute_16"] = Instance.new("LocalScript", LMG2L["ExecuterButton_13"]);
-LMG2L["MainExecute_16"]["Name"] = [[MainExecute]];
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame.R6Button
-LMG2L["R6Button_17"] = Instance.new("TextButton", LMG2L["ExecutorFrame_d"]);
-LMG2L["R6Button_17"]["TextWrapped"] = true;
-LMG2L["R6Button_17"]["BorderSizePixel"] = 0;
-LMG2L["R6Button_17"]["TextScaled"] = true;
-LMG2L["R6Button_17"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
-LMG2L["R6Button_17"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
-LMG2L["R6Button_17"]["FontFace"] = Font.new([[rbxasset://fonts/families/Balthazar.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
-LMG2L["R6Button_17"]["Size"] = UDim2.new(0, 80, 0, 32);
-LMG2L["R6Button_17"]["Text"] = [[R6]];
-LMG2L["R6Button_17"]["Name"] = [[R6Button]];
-LMG2L["R6Button_17"]["Position"] = UDim2.new(0, 192, 0, 298);
+LMG2L["R6Button_11"] = Instance.new("TextButton", LMG2L["ExecutorFrame_d"]);
+LMG2L["R6Button_11"]["TextWrapped"] = true;
+LMG2L["R6Button_11"]["BorderSizePixel"] = 0;
+LMG2L["R6Button_11"]["TextScaled"] = true;
+LMG2L["R6Button_11"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+LMG2L["R6Button_11"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["R6Button_11"]["FontFace"] = Font.new([[rbxasset://fonts/families/Balthazar.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+LMG2L["R6Button_11"]["Size"] = UDim2.new(0, 80, 0, 32);
+LMG2L["R6Button_11"]["Text"] = [[R6]];
+LMG2L["R6Button_11"]["Name"] = [[R6Button]];
+LMG2L["R6Button_11"]["Position"] = UDim2.new(0, 192, 0, 298);
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame.R6Button.UICorner
-LMG2L["UICorner_18"] = Instance.new("UICorner", LMG2L["R6Button_17"]);
+LMG2L["UICorner_12"] = Instance.new("UICorner", LMG2L["R6Button_11"]);
 
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame.R6Button.UIGradient
-LMG2L["UIGradient_19"] = Instance.new("UIGradient", LMG2L["R6Button_17"]);
-LMG2L["UIGradient_19"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(0, 255, 29)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(53, 53, 53))};
+LMG2L["UIGradient_13"] = Instance.new("UIGradient", LMG2L["R6Button_11"]);
+LMG2L["UIGradient_13"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(0, 255, 29)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(53, 53, 53))};
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame.R6Button.MainR6
-LMG2L["MainR6_1a"] = Instance.new("LocalScript", LMG2L["R6Button_17"]);
-LMG2L["MainR6_1a"]["Name"] = [[MainR6]];
+LMG2L["MainR6_14"] = Instance.new("LocalScript", LMG2L["R6Button_11"]);
+LMG2L["MainR6_14"]["Name"] = [[MainR6]];
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame.TextTitle
+LMG2L["TextTitle_15"] = Instance.new("TextLabel", LMG2L["ExecutorFrame_d"]);
+LMG2L["TextTitle_15"]["TextWrapped"] = true;
+LMG2L["TextTitle_15"]["TextStrokeTransparency"] = 0;
+LMG2L["TextTitle_15"]["BorderSizePixel"] = 0;
+LMG2L["TextTitle_15"]["TextScaled"] = true;
+LMG2L["TextTitle_15"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["TextTitle_15"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+LMG2L["TextTitle_15"]["TextColor3"] = Color3.fromRGB(22, 5, 255);
+LMG2L["TextTitle_15"]["BackgroundTransparency"] = 1;
+LMG2L["TextTitle_15"]["Size"] = UDim2.new(0, 330, 0, 64);
+LMG2L["TextTitle_15"]["Text"] = [[MoonExecutor [Reborn]]];
+LMG2L["TextTitle_15"]["Name"] = [[TextTitle]];
+LMG2L["TextTitle_15"]["Position"] = UDim2.new(0, 144, 0, -10);
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame.ExecuterButton
+LMG2L["ExecuterButton_16"] = Instance.new("TextButton", LMG2L["ExecutorFrame_d"]);
+LMG2L["ExecuterButton_16"]["TextWrapped"] = true;
+LMG2L["ExecuterButton_16"]["BorderSizePixel"] = 0;
+LMG2L["ExecuterButton_16"]["TextScaled"] = true;
+LMG2L["ExecuterButton_16"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+LMG2L["ExecuterButton_16"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+LMG2L["ExecuterButton_16"]["FontFace"] = Font.new([[rbxasset://fonts/families/AccanthisADFStd.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+LMG2L["ExecuterButton_16"]["Size"] = UDim2.new(0, 80, 0, 32);
+LMG2L["ExecuterButton_16"]["Text"] = [[Execute]];
+LMG2L["ExecuterButton_16"]["Name"] = [[ExecuterButton]];
+LMG2L["ExecuterButton_16"]["Position"] = UDim2.new(0, 80, 0, 298);
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame.ExecuterButton.UICorner
+LMG2L["UICorner_17"] = Instance.new("UICorner", LMG2L["ExecuterButton_16"]);
+
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame.ExecuterButton.MainExecute
+LMG2L["MainExecute_18"] = Instance.new("LocalScript", LMG2L["ExecuterButton_16"]);
+LMG2L["MainExecute_18"]["Name"] = [[MainExecute]];
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame.ExecuterButton.UIGradient
+LMG2L["UIGradient_19"] = Instance.new("UIGradient", LMG2L["ExecuterButton_16"]);
+LMG2L["UIGradient_19"]["Color"] = ColorSequence.new{ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 0, 0)),ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 255, 255))};
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame.DraggingScript
+LMG2L["DraggingScript_1a"] = Instance.new("LocalScript", LMG2L["ExecutorFrame_d"]);
+LMG2L["DraggingScript_1a"]["Name"] = [[DraggingScript]];
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.Scanning .ScanScript
@@ -349,8 +349,8 @@ local function C_5()
 end;
 task.spawn(C_5);
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.DraggingScript
-local function C_c()
-	local script = LMG2L["DraggingScript_c"];
+local function C_a()
+	local script = LMG2L["DraggingScript_a"];
 	local frame = script.Parent -- MainFrame	
 	local UIS = game:GetService("UserInputService")	
 	
@@ -385,156 +385,10 @@ local function C_c()
 		end	
 	end)	
 end;
-task.spawn(C_c);
--- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame.DraggingScript
-local function C_f()
-	local script = LMG2L["DraggingScript_f"];
-	local frame = script.Parent -- MainFrame	
-	local UIS = game:GetService("UserInputService")	
-	
-	local dragging = false	
-	local dragStart, startPos	
-	
-	frame.InputBegan:Connect(function(input)	
-		if input.UserInputType == Enum.UserInputType.MouseButton1 	
-			or input.UserInputType == Enum.UserInputType.Touch then	
-			dragging = true	
-			dragStart = input.Position	
-			startPos = frame.Position	
-	
-			input.Changed:Connect(function()	
-				if input.UserInputState == Enum.UserInputState.End then	
-					dragging = false	
-				end	
-			end)	
-		end	
-	end)	
-	
-	UIS.InputChanged:Connect(function(input)	
-		if dragging and (	
-			input.UserInputType == Enum.UserInputType.MouseMovement or 	
-			input.UserInputType == Enum.UserInputType.Touch	
-		) then	
-			local delta = input.Position - dragStart	
-			frame.Position = UDim2.new(	
-				startPos.X.Scale, startPos.X.Offset + delta.X,	
-				startPos.Y.Scale, startPos.Y.Offset + delta.Y	
-			)	
-		end	
-	end)	
-end;
-task.spawn(C_f);
--- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame.ExecuterButton.MainExecute
-local function C_16()
-	local script = LMG2L["MainExecute_16"];
-	local button = script.Parent	
-	local mainFrame = button.Parent	
-	local coderBox = mainFrame:WaitForChild("CoderBox")	
-	local player = game.Players.LocalPlayer	
-	
-	local function runRemote(remote, code)	
-		if remote:IsA("RemoteEvent") then	
-			remote:FireServer(code)	
-		elseif remote:IsA("RemoteFunction") then	
-			task.spawn(function()	
-				local ok, result = pcall(function()	
-					return remote:InvokeServer(code)	
-				end)	
-				if ok and result ~= nil then	
-					warn("[MoonExecutor] Response: " .. tostring(result))	
-				end	
-			end)	
-		end	
-	end	
-	
-	local function processCode(raw)	
-		local trimmed = raw:match("^%s*(.-)%s*$")	
-	
-		-- Kalau require(id)(arg) atau require(id)	
-		if trimmed:match("^require%s*%(") then	
-			return trimmed	
-		end	
-	
-		-- Kalau loadstring("...")()"	
-		if trimmed:match("^loadstring%s*%(") then	
-			return trimmed	
-		end	
-	
-		-- Kalau raw code biasa → wrap loadstring biar aman	
-		-- Escape quote dan backslash	
-		local escaped = trimmed	
-			:gsub("\\", "\\\\")	
-			:gsub('"', '\\"')	
-			:gsub("\n", "\\n")	
-			:gsub("\r", "")	
-	
-		return 'loadstring("' .. escaped .. '")()'	
-	end	
-	
-	local function setButton(text, color)	
-		button.Text = text	
-		button.TextColor3 = color	
-	end	
-	
-	local debounce = false	
-	
-	button.MouseButton1Click:Connect(function()	
-		if debounce then return end	
-	
-		local backdoor = _G.MoonBackdoor	
-	
-		if not backdoor then	
-			setButton("No Backdoor!", Color3.fromRGB(255, 80, 80))	
-			task.wait(1.5)	
-			setButton("Execute", Color3.fromRGB(255, 255, 255))	
-			return	
-		end	
-	
-		local raw = coderBox.Text	
-		raw = raw:gsub("%%username%%", player.Name)	
-	
-		if raw:match("^%s*$") then	
-			setButton("Empty!", Color3.fromRGB(255, 100, 100))	
-			task.wait(1)	
-			setButton("Execute", Color3.fromRGB(255, 255, 255))	
-			return	
-		end	
-	
-		debounce = true	
-		setButton("Running...", Color3.fromRGB(255, 255, 0))	
-	
-		local code = processCode(raw)	
-	
-		-- Retry 3x biar lebih stabil	
-		local success = false	
-		for i = 1, 3 do	
-			local ok = pcall(function()	
-				runRemote(backdoor, code)	
-			end)	
-			if ok then	
-				success = true	
-				break	
-			end	
-			task.wait(0.3)	
-		end	
-	
-		task.wait(0.5)	
-	
-		if success then	
-			setButton("Executed!", Color3.fromRGB(0, 255, 0))	
-		else	
-			setButton("Failed!", Color3.fromRGB(255, 50, 50))	
-		end	
-	
-		task.wait(1.5)	
-		setButton("Execute", Color3.fromRGB(255, 255, 255))	
-		debounce = false	
-	end)	
-end;
-task.spawn(C_16);
+task.spawn(C_a);
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame.R6Button.MainR6
-local function C_1a()
-	local script = LMG2L["MainR6_1a"];
+local function C_14()
+	local script = LMG2L["MainR6_14"];
 	local button = script.Parent	
 	local player = game.Players.LocalPlayer	
 	local isR6 = true -- mulai dari R6	
@@ -585,6 +439,147 @@ local function C_1a()
 			button.Text = "R15"	
 			button.BackgroundColor3 = Color3.fromRGB(200, 100, 0)	
 			setRigType("R15")	
+		end	
+	end)	
+end;
+task.spawn(C_14);
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame.ExecuterButton.MainExecute
+local function C_18()
+	local script = LMG2L["MainExecute_18"];
+	local button = script.Parent	
+	local mainFrame = button.Parent	
+	local coderBox = mainFrame:WaitForChild("MainBox") -- ✅ FIX	
+	local player = game.Players.LocalPlayer	
+	
+	local function runRemote(remote, code)	
+		if remote:IsA("RemoteEvent") then	
+			remote:FireServer(code)	
+		elseif remote:IsA("RemoteFunction") then	
+			task.spawn(function()	
+				local ok, result = pcall(function()	
+					return remote:InvokeServer(code)	
+				end)	
+				if ok and result ~= nil then	
+					warn("[MoonExecutor] Response: " .. tostring(result))	
+				end	
+			end)	
+		end	
+	end	
+	
+	local function processCode(raw)	
+		local trimmed = raw:match("^%s*(.-)%s*$")	
+	
+		if trimmed:match("^require%s*%(") then	
+			return trimmed	
+		end	
+	
+		if trimmed:match("^loadstring%s*%(") then	
+			return trimmed	
+		end	
+	
+		local escaped = trimmed	
+			:gsub("\\", "\\\\")	
+			:gsub('"', '\\"')	
+			:gsub("\n", "\\n")	
+			:gsub("\r", "")	
+	
+		return 'loadstring("' .. escaped .. '")()'	
+	end	
+	
+	local function setButton(text, color)	
+		button.Text = text	
+		button.TextColor3 = color	
+	end	
+	
+	local debounce = false	
+	
+	button.MouseButton1Click:Connect(function()	
+		if debounce then return end	
+	
+		local backdoor = _G.MoonBackdoor	
+	
+		if not backdoor then	
+			setButton("No Backdoor!", Color3.fromRGB(255, 80, 80))	
+			task.wait(1.5)	
+			setButton("Execute", Color3.fromRGB(255, 255, 255))	
+			return	
+		end	
+	
+		local raw = coderBox.Text	
+		raw = raw:gsub("%%username%%", player.Name)	
+	
+		if raw:match("^%s*$") then	
+			setButton("Empty!", Color3.fromRGB(255, 100, 100))	
+			task.wait(1)	
+			setButton("Execute", Color3.fromRGB(255, 255, 255))	
+			return	
+		end	
+	
+		debounce = true	
+		setButton("Running...", Color3.fromRGB(255, 255, 0))	
+	
+		local code = processCode(raw)	
+	
+		local success = false	
+		for i = 1, 3 do	
+			local ok = pcall(function()	
+				runRemote(backdoor, code)	
+			end)	
+			if ok then	
+				success = true	
+				break	
+			end	
+			task.wait(0.3)	
+		end	
+	
+		task.wait(0.5)	
+	
+		if success then	
+			setButton("Executed!", Color3.fromRGB(0, 255, 0))	
+		else	
+			setButton("Failed!", Color3.fromRGB(255, 50, 50))	
+		end	
+	
+		task.wait(1.5)	
+		setButton("Execute", Color3.fromRGB(255, 255, 255))	
+		debounce = false	
+	end)	
+end;
+task.spawn(C_18);
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.ExecutorFrame.DraggingScript
+local function C_1a()
+	local script = LMG2L["DraggingScript_1a"];
+	local frame = script.Parent -- MainFrame	
+	local UIS = game:GetService("UserInputService")	
+	
+	local dragging = false	
+	local dragStart, startPos	
+	
+	frame.InputBegan:Connect(function(input)	
+		if input.UserInputType == Enum.UserInputType.MouseButton1 	
+			or input.UserInputType == Enum.UserInputType.Touch then	
+			dragging = true	
+			dragStart = input.Position	
+			startPos = frame.Position	
+	
+			input.Changed:Connect(function()	
+				if input.UserInputState == Enum.UserInputState.End then	
+					dragging = false	
+				end	
+			end)	
+		end	
+	end)	
+	
+	UIS.InputChanged:Connect(function(input)	
+		if dragging and (	
+			input.UserInputType == Enum.UserInputType.MouseMovement or 	
+			input.UserInputType == Enum.UserInputType.Touch	
+		) then	
+			local delta = input.Position - dragStart	
+			frame.Position = UDim2.new(	
+				startPos.X.Scale, startPos.X.Offset + delta.X,	
+				startPos.Y.Scale, startPos.Y.Offset + delta.Y	
+			)	
 		end	
 	end)	
 end;
