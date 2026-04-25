@@ -20,7 +20,7 @@ LMG2L["ScreenGui_1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame
 LMG2L["MenuInjectFrame_2"] = Instance.new("Frame", LMG2L["ScreenGui_1"]);
 LMG2L["MenuInjectFrame_2"]["BorderSizePixel"] = 0;
-LMG2L["MenuInjectFrame_2"]["BackgroundColor3"] = Color3.fromRGB(6, 20, 57);
+LMG2L["MenuInjectFrame_2"]["BackgroundColor3"] = Color3.fromRGB(75, 5, 117);
 LMG2L["MenuInjectFrame_2"]["Size"] = UDim2.new(0.4043, 0, 0.39197, 0);
 LMG2L["MenuInjectFrame_2"]["Position"] = UDim2.new(0.30586, 0, 0.29704, 0);
 LMG2L["MenuInjectFrame_2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
@@ -48,15 +48,15 @@ LMG2L["UICorner_4"] = Instance.new("UICorner", LMG2L["Scanning _3"]);
 
 
 
--- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.Scanning .ScanScript
-LMG2L["ScanScript_5"] = Instance.new("LocalScript", LMG2L["Scanning _3"]);
-LMG2L["ScanScript_5"]["Name"] = [[ScanScript]];
-
-
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.Scanning .UIStroke
-LMG2L["UIStroke_6"] = Instance.new("UIStroke", LMG2L["Scanning _3"]);
-LMG2L["UIStroke_6"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
-LMG2L["UIStroke_6"]["Color"] = Color3.fromRGB(227, 12, 237);
+LMG2L["UIStroke_5"] = Instance.new("UIStroke", LMG2L["Scanning _3"]);
+LMG2L["UIStroke_5"]["ApplyStrokeMode"] = Enum.ApplyStrokeMode.Border;
+LMG2L["UIStroke_5"]["Color"] = Color3.fromRGB(227, 12, 237);
+
+
+-- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.Scanning .ScanScript
+LMG2L["ScanScript_6"] = Instance.new("LocalScript", LMG2L["Scanning _3"]);
+LMG2L["ScanScript_6"]["Name"] = [[ScanScript]];
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.UICorner
@@ -76,7 +76,7 @@ LMG2L["Reborns_9"]["BorderSizePixel"] = 0;
 LMG2L["Reborns_9"]["TextScaled"] = true;
 LMG2L["Reborns_9"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
 LMG2L["Reborns_9"]["FontFace"] = Font.new([[rbxasset://fonts/families/Inconsolata.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
-LMG2L["Reborns_9"]["TextColor3"] = Color3.fromRGB(255, 24, 190);
+LMG2L["Reborns_9"]["TextColor3"] = Color3.fromRGB(3, 0, 255);
 LMG2L["Reborns_9"]["BackgroundTransparency"] = 1;
 LMG2L["Reborns_9"]["Size"] = UDim2.new(0, 132, 0, 50);
 LMG2L["Reborns_9"]["Text"] = [[[REBORN]]];
@@ -225,8 +225,8 @@ LMG2L["DraggingScript_1a"]["Name"] = [[DraggingScript]];
 
 
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.Scanning .ScanScript
-local function C_5()
-	local script = LMG2L["ScanScript_5"];
+local function C_6()
+	local script = LMG2L["ScanScript_6"];
 	local button = script.Parent	
 	local player = game.Players.LocalPlayer	
 	
@@ -309,12 +309,12 @@ local function C_5()
 		local backdoor = findBackdoor()	
 	
 		local screenGui = button:FindFirstAncestorOfClass("ScreenGui")	
-		local mainFrame = screenGui and screenGui:FindFirstChild("ExecutorFrame")	
+		local executorFrame = screenGui and screenGui:FindFirstChild("ExecutorFrame")	
 		local menuInjectFrame = button.Parent	
 	
 		isScanning = false	
 	
-		if backdoor and mainFrame then	
+		if backdoor and executorFrame then	
 			_G.MoonBackdoor = backdoor	
 	
 			button.Text = "Found!"	
@@ -322,13 +322,8 @@ local function C_5()
 	
 			task.wait(0.5)	
 	
-			-- Pindah ke CoreGui biar tidak hilang saat respawn	
-			pcall(function()	
-				screenGui.ResetOnSpawn = false	
-				screenGui.Parent = game:GetService("CoreGui")	
-			end)	
-	
-			mainFrame.Visible = true	
+			-- Langsung swap visible	
+			executorFrame.Visible = true	
 			menuInjectFrame.Visible = false	
 	
 			local hint = Instance.new("Hint")	
@@ -342,12 +337,12 @@ local function C_5()
 			if not backdoor then	
 				button.Text = "No Backdoor Found :("	
 			else	
-				button.Text = "MainFrame Not Found :("	
+				button.Text = "ExecutorFrame Not Found :("	
 			end	
 		end	
 	end)	
 end;
-task.spawn(C_5);
+task.spawn(C_6);
 -- Players.KHAFIDZKTP.PlayerGui.ScreenGui.MenuInjectFrame.DraggingScript
 local function C_a()
 	local script = LMG2L["DraggingScript_a"];
