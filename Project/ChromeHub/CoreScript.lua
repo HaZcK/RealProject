@@ -20,7 +20,7 @@ local LocalPlayer    = Players.LocalPlayer
 -- ============================
 -- CONFIG
 -- ============================
-local RAW_URL    = "https://raw.githubusercontent.com/HaZcK/ChromaHub/main/"
+local RAW_URL    = "https://raw.githubusercontent.com/HaZcK/RealProject/refs/heads/main/Project/ChromeHub/"
 local GAMEID_URL = RAW_URL .. "Gameid.json"
 local SCRIPT_URL = RAW_URL .. "ScriptGames/"
 
