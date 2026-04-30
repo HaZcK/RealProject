@@ -22,7 +22,7 @@ local LocalPlayer    = Players.LocalPlayer
 -- ============================
 local RAW_URL    = "https://raw.githubusercontent.com/HaZcK/ChromaHub/main/"
 local GAMEID_URL = RAW_URL .. "Gameid.json"
-local SCRIPT_URL = RAW_URL .. "ScriptGame/"
+local SCRIPT_URL = RAW_URL .. "ScriptGames/"
 
 local COLOR_PURPLE  = Color3.fromRGB(150, 70, 255)
 local COLOR_GREEN   = Color3.fromRGB(100, 220, 140)
