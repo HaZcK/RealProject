@@ -4,6 +4,7 @@
 ![Version](https://img.shields.io/badge/version-1.0.0-blueviolet)
 ![Executor](https://img.shields.io/badge/executor-Delta%20Android-orange)
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
+
 ![Creator](https://img.shields.io/badge/By-Khafidz-Blue?logo=github)
 ![POWERED_BY](https://img.shields.io/badge/Gemini-AI-Purple)
 
