@@ -1,0 +1,14 @@
+{
+  "games": [
+    {
+      "id": 2753915549,
+      "name": "Blox Fruits",
+      "script": "BloxFruits"
+    },
+    {
+      "id": 123456789,
+      "name": "Nama Game Baru",
+      "script": "NamaGameBaru"
+    }
+  ]
+}
