@@ -13,9 +13,9 @@
 -- ============================
 -- LOAD LIBRARY
 -- ============================
-local RAW_URL = "https://raw.githubusercontent.com/HaZcK/ChromaHub/main/"
+local RAW_URL = "https://raw.githubusercontent.com/HaZcK/RealProject/refs/heads/main/Project/ChromeHub/"
 
-loadstring(game:HttpGet(RAW_URL .. "ScriptGame/LibraryScript.lua"))()
+loadstring(game:HttpGet(RAW_URL .. "ScriptGames/LibraryScript.lua"))()
 
 -- Ambil dari global env
 local lib     = getgenv().ChromaLib
