@@ -1364,7 +1364,7 @@ local function launchRayfield()
     if not rfOk or not Rayfield then error("❌ Gagal load Rayfield!") end
 
     local Win=Rayfield:CreateWindow({
-        Name="ChatGlobal  ·  Setup v5.0",
+        Name="ChatGlobal  ·  Setup v5.0 ",
         LoadingTitle="ChatGlobal v5.0",
         LoadingSubtitle="by KHAFIDZKTP  ·  ketik /Setup untuk buka kembali",
         ConfigurationSaving={Enabled=false}, Discord={Enabled=false}, KeySystem=false,
